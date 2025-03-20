@@ -1,70 +1,6 @@
 <!-- CSS Styles -->
 <style>
-    /* Basic Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    body {
-        font-family: 'Arial', sans-serif;
-        line-height: 1.6;
-        color: #333;
-    }
-    
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
-    
-    /* Header Styles */
-    .site-header {
-        background-color: #fff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        padding: 15px 0;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-    
-    .site-header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .site-logo {
-        font-size: 28px;
-        color: #0051a3;
-        transition: transform 0.3s ease;
-    }
-    
-    .logo-link:hover .site-logo {
-        transform: scale(1.05);
-    }
-    
-    .nav-menu {
-        display: flex;
-        list-style: none;
-    }
-    
-    .nav-menu li {
-        margin-left: 25px;
-        position: relative;
-    }
-    
-    .nav-menu a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-    
-    .nav-menu a:hover, .nav-menu a.active {
-        color: #0051a3;
-    }
+   <link rel="stylesheet" href="navigation-styles.css">
     
     /* Dropdown Menu */
     .dropdown-menu {
@@ -456,31 +392,37 @@
             });
         });
     });
-</script><!-- Header with Navigation -->
-<header class="site-header">
-    <div class="container">
-        <div class="logo-container">
-            <!-- Logo with hover animation -->
-            <a href="/" class="logo-link">
-                <h1 class="site-logo">DIDUSEC</h1>
-            </a>
-        </div>
+<!-- Header with Navigation HTML -->
+<header>
+    <div class="container header-container">
+        <a href="index.html" class="logo">
+            <i class="fas fa-cloud-upload-alt logo-icon"></i>
+            <div class="logo-text">DIDUSEC</div>
+        </a>
         
-        <nav class="main-navigation">
-            <ul class="nav-menu">
-                <li><a href="/about-us">About Us</a></li>
-                <li class="has-dropdown active">
-                    <a href="/services">Services <i class="dropdown-icon">▼</i></a>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        
+        <nav>
+            <ul>
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="About US.html">About Us</a></li>
+                <li class="dropdown">
+                    <a href="Services.html" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
-                        <!-- Replace these href values with actual page URLs -->
-                        <li><a href="/services/finops">FinOps</a></li>
-                        <li><a href="/services/it-automation">IT Automation</a></li>
-                        <li><a href="/services/data-fabric">Data Fabric</a></li>
-                        <li><a href="/services/digital-transformation" class="active">Digital Transformation & Modernisation</a></li>
+                        <li><a href="FinOps.html">FinOps</a></li>
+                        <li><a href="IT Automation.html">IT Automation</a></li>
+                        <li><a href="Data Fabric.html">Data Fabric</a></li>
+                        <li><a href="Digital Transformations and Modernization.html">Digital Transformation</a></li>
                     </ul>
                 </li>
-                <li><a href="/why-choose-us">Why Choose Us</a></li>
-                <li><a href="/contact-us">Contact Us</a></li>
+                <li><a href="Why Choose Us.html">Why Choose Us</a></li>
+                <li><a href="Contact-us.html">Contact Us</a></li>
             </ul>
         </nav>
     </div>
@@ -565,6 +507,7 @@
         </div>
     </div>
 </section>
+     <script src="navigation-script.js"></script>
 
 <!-- Benefits Section -->
 <section class="benefits-section">
