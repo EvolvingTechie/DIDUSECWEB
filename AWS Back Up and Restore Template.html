@@ -1,0 +1,710 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Backup & Restore Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --aws-orange: #FF9900;
+            --aws-navy: #232F3E;
+            --aws-sky: #00A1E0;
+            --aws-gray: #6B7280;
+        }
+
+        body {
+            font-family: 'Amazon Ember', 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--aws-navy) 0%, #1a2533 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .didusec-logo {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--aws-navy), var(--aws-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            animation: logoAnimation 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes logoAnimation {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(255, 153, 0, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(255, 153, 0, 0.2);
+            }
+        }
+
+        .content-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aws-orange);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            color: var(--aws-orange);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            max-width: 600px;
+            margin: 40px auto;
+            border-top: 4px solid var(--aws-sky);
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 0 15px 0;
+        }
+
+        h2 {
+            color: var(--aws-navy);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        form {
+            display: grid;
+            gap: 25px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            margin-top: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--aws-orange);
+            outline: none;
+        }
+
+        button {
+            background-color: var(--aws-orange);
+            color: white;
+            padding: 16px 35px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e68a00;
+        }
+
+        .required::after {
+            content: "*";
+            color: #dc2626;
+            margin-left: 3px;
+        }
+
+        .video-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 60px 0;
+            margin: 50px 0;
+            border-radius: 10px;
+        }
+        
+        .video-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .video-content h2 {
+            color: var(--aws-navy);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        .video-content p {
+            color: var(--aws-gray);
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-cta {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .video-cta p {
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--aws-navy);
+        }
+        
+        .video-button {
+            display: inline-block;
+            background-color: var(--aws-orange);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .video-button:hover {
+            background-color: #e68a00;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(230, 138, 0, 0.3);
+        }
+
+        .addressPan {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aws-sky);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .footer {
+            background-color: var(--aws-navy);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .contact-info h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--aws-orange);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .contact-info address {
+            font-style: normal;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin: 5px 0;
+        }
+        
+        .contact-details {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .contact-details li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            color: var(--aws-orange);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: var(--aws-orange);
+        }
+        
+        .footer-logo {
+            text-align: right;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .didusec-footer-logo {
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo p {
+            color: var(--aws-gray);
+            font-size: 0.9rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: var(--aws-gray);
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .solution-item {
+            display: flex;
+            background-color: #f8f9fc;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .solution-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        
+        .solution-icon {
+            font-size: 2rem;
+            color: var(--aws-orange);
+            margin-right: 20px;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .solution-content h3 {
+            color: var(--aws-navy);
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+        }
+        
+        .solution-content p {
+            margin: 0;
+            color: var(--aws-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .benefits-section {
+            margin: 40px 0 30px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            border-left: 4px solid var(--aws-orange);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .benefits-section h3 {
+            color: var(--aws-navy);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+        
+        .benefits-section h3 i {
+            color: var(--aws-orange);
+            margin-right: 10px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .benefit-item {
+            padding: 20px;
+            background-color: #f8f9fc;
+            border-radius: 8px;
+        }
+        
+        .benefit-item i {
+            color: var(--aws-orange);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .benefit-item h4 {
+            color: var(--aws-navy);
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        .benefit-item p {
+            margin: 0;
+            color: var(--aws-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .solutions-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-logo {
+                text-align: left;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="didusec-logo">
+                <span class="logo-text">DIDUSEC</span>
+            </div>
+            <h1>AWS Backup & Restore Solutions</h1>
+            <p>Secure Cloud Data Management with AWS Partners</p>
+        </div>
+
+        <div class="content-section">
+            <div class="card">
+                <i class="fas fa-shield-alt service-icon"></i>
+                <h2>Enterprise Backup Solutions</h2>
+                <p>Didusec partners with Amazon Web Services (AWS) to help you build secure, efficient, and cost-effective backup and restore solutions that protect your critical business data while optimizing costs and ensuring regulatory compliance.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Automated daily, weekly, and monthly backups</li>
+                    <li><i class="fas fa-check-circle"></i> Point-in-time recovery options</li>
+                    <li><i class="fas fa-check-circle"></i> Cross-region replication for disaster recovery</li>
+                    <li><i class="fas fa-check-circle"></i> Immutable backup protection against ransomware</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-cogs service-icon"></i>
+                <h2>Expert Implementation</h2>
+                <p>As an AWS Advanced Consulting Partner, Didusec delivers tailored backup and restore solutions leveraging AWS's robust ecosystem. Our certified experts design and implement solutions that minimize downtime, reduce operational overhead, and provide automated recovery procedures to ensure business continuity across all environments.</p>
+                <div class="metrics-container">
+                    <div class="metric">
+                        <span class="metric-value">99.9%</span>
+                        <span class="metric-label">Service Uptime</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">60%</span>
+                        <span class="metric-label">Cost Reduction</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">24/7</span>
+                        <span class="metric-label">Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: 1/-1; padding: 40px;">
+            <i class="fas fa-tasks service-icon"></i>
+            <h2>Our Comprehensive Backup Solutions</h2>
+            <p>Didusec's comprehensive AWS backup and restore solutions address the unique challenges organizations face in managing and protecting their data in today's complex IT environments. Our approach combines AWS's industry-leading storage and data protection services with Didusec's expertise in cloud architecture and security.</p>
+            
+            <div class="solutions-grid">
+                <div class="solution-item">
+                    <i class="fas fa-server solution-icon"></i>
+                    <div class="solution-content">
+                        <h3>EC2 Instance Backup</h3>
+                        <p>Automated snapshots of your EC2 instances with customizable retention policies and instant recovery capabilities.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-item">
+                    <i class="fas fa-database solution-icon"></i>
+                    <div class="solution-content">
+                        <h3>RDS Database Backup</h3>
+                        <p>Secure backups of your RDS databases with point-in-time recovery and cross-region replication options.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-item">
+                    <i class="fas fa-folder solution-icon"></i>
+                    <div class="solution-content">
+                        <h3>EFS File System Backup</h3>
+                        <p>Reliable backups of your Elastic File System data with incremental backup support to minimize storage costs.</p>
+                    </div>
+                </div>
+                
+                <div class="solution-item">
+                    <i class="fas fa-table solution-icon"></i>
+                    <div class="solution-content">
+                        <h3>DynamoDB Table Backup</h3>
+                        <p>Consistent backups of your NoSQL databases with minimal impact on performance and flexible restore options.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="benefits-section">
+                <h3><i class="fas fa-star"></i> Key Benefits</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>Reduced Recovery Time</h4>
+                        <p>Minimize downtime with rapid restoration capabilities that get your systems back online in minutes, not hours.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-lock"></i>
+                        <h4>Enhanced Security</h4>
+                        <p>Multi-layered encryption and access controls protect your backups from unauthorized access.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Optimized Costs</h4>
+                        <p>Intelligent tiering automatically moves older backups to more cost-effective storage classes.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-clipboard-check"></i>
+                        <h4>Compliance Ready</h4>
+                        <p>Meet regulatory requirements with audit trails, retention policies, and comprehensive reporting.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <i class="fas fa-database service-icon"></i>
+                    <h3>Amazon S3</h3>
+                    <p>Secure, durable object storage infrastructure with 99.999999999% reliability</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-archive service-icon"></i>
+                    <h3>S3 Standard-IA</h3>
+                    <p>Infrequent access storage with immediate retrieval and lower costs</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-snowflake service-icon"></i>
+                    <h3>S3 Glacier</h3>
+                    <p>Long-term archival storage with flexible retrieval options from minutes to hours</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-section">
+            <div class="video-content">
+                <h2><i class="fas fa-play-circle" style="color: var(--aws-orange); margin-right: 15px;"></i>Introducing AWS Backup | Amazon Web Services</h2>
+                <p>Learn how AWS Backup provides a centralized backup solution for applications running on AWS. This solution enables you to configure backup policies and monitor backup activity for AWS resources such as Amazon EBS volumes, Amazon RDS databases, Amazon DynamoDB tables, Amazon EFS file systems, and AWS Storage Gateway volumes.</p>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/xD0FRjY9ujY" title="Introducing AWS Backup | Amazon Web Services" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>Didusec's implementation of AWS Backup transformed our disaster recovery strategy. Their expertise saved us countless hours and reduced our backup costs by over 40%.</p>
+                        <div class="testimonial-author">
+                            <i class="fas fa-user-circle"></i>
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <p>CTO, Global Financial Services</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-cta">
+                    <p>Ready to implement AWS Backup with expert guidance?</p>
+                    <a href="#contact-form" class="video-button">Contact Our Team</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container" id="contact-form">
+            <div class="form-header">
+                <h2><i class="fas fa-paper-plane" style="color: var(--aws-orange);"></i> Contact Us</h2>
+                <p>Tell us about your backup and storage needs, and we'll be in touch shortly</p>
+            </div>
+            <form action="mailto:marketing@didusec.co.za" method="POST" enctype="text/plain">
+                <div class="contact-form-grid">
+                    <div class="form-group">
+                        <label for="name" class="required">First Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname" class="required">Last Name</label>
+                        <input type="text" id="surname" name="surname" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+                
+                <div class="contact-form-grid">
+                    <div class="form-group">
+                        <label for="company" class="required">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Your company name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@company.com" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cell" class="required">Phone Number</label>
+                    <input type="tel" id="cell" name="cell" placeholder="+27 XX XXX XXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="required">How Can We Help?</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Tell us about your cloud backup and storage requirements..." required></textarea>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Send Message
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="footer">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <h3><i class="fas fa-building"></i> Contact Information</h3>
+                    <address>
+                        <p><strong>Didusec (Pty) Ltd</strong></p>
+                        <p>Wembley 1st Floor, The Campus</p>
+                        <p>57 Sloane Street</p>
+                        <p>Bryanston</p>
+                    </address>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:marketing@didusec.co.za">marketing@didusec.co.za</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+27115933293">+27 11 593 3293</a></li>
+                        <li><i class="fas fa-globe"></i> <a href="https://didusec.co.za" target="_blank">https://didusec.co.za</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-logo">
+                    <div class="didusec-footer-logo">
+                        <span class="logo-text">DIDUSEC</span>
+                    </div>
+                    <p>Your AWS Backup & Restore Partner</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Didusec (Pty) Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

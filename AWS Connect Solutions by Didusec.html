@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Connect Solutions | Didusec</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --connect-purple: #7956d8;
+            --connect-purple-dark: #6a49c6;
+            --connect-light: #f5f7ff;
+            --aws-navy: #232F3E;
+            --aws-gray: #6B7280;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+
+        body {
+            font-family: 'Amazon Ember', 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--aws-navy) 0%, #1a2533 100%);
+            color: white;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .didusec-logo {
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo-text {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--aws-navy), var(--connect-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            animation: logoAnimation 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes logoAnimation {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(121, 86, 216, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 15px rgba(121, 86, 216, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(121, 86, 216, 0.2);
+            }
+        }
+
+        .hero {
+            background: url('/api/placeholder/1200/600') no-repeat center center;
+            background-size: cover;
+            background-color: var(--aws-navy);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(35, 47, 62, 0.85);
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: var(--connect-purple);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            background-color: var(--connect-purple-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefits-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            color: var(--aws-navy);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background-color: var(--connect-light);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--connect-purple);
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            color: var(--aws-navy);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+        }
+
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--connect-light);
+        }
+
+        .features-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .features-content h2 {
+            color: var(--aws-navy);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--connect-purple);
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .testimonial-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background-color: var(--connect-light);
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-quote::before {
+            content: "\f10d";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--connect-purple);
+            opacity: 0.2;
+            font-size: 2rem;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: var(--aws-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .testimonial-author-info h4 {
+            margin: 0 0 5px;
+            color: var(--aws-navy);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author-info p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            padding: 80px 0;
+            background-color: var(--connect-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            color: var(--aws-navy);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .contact-list li i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: var(--connect-purple);
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-top: 5px solid var(--connect-purple);
+        }
+
+        .contact-card h3 {
+            color: var(--aws-navy);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--connect-purple);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(121, 86, 216, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .required::after {
+            content: "*";
+            color: #dc2626;
+            margin-left: 3px;
+        }
+
+        .contact-button {
+            background-color: var(--connect-purple);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .contact-button:hover {
+            background-color: var(--connect-purple-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(121, 86, 216, 0.3);
+        }
+
+        .footer {
+            background-color: var(--aws-navy);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .contact-info-footer {
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .contact-info-footer h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--connect-purple);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .contact-info-footer address {
+            font-style: normal;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info-footer p {
+            margin: 5px 0;
+        }
+        
+        .contact-details {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .contact-details li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            color: var(--connect-purple);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: var(--connect-purple);
+        }
+        
+        .footer-logo {
+            text-align: right;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .didusec-footer-logo {
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo p {
+            color: var(--aws-gray);
+            font-size: 0.9rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: var(--aws-gray);
+        }
+
+        @media (max-width: 992px) {
+            .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .features-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .video-container {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .benefits-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-logo {
+                text-align: left;
+                align-items: flex-start;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .didusec-logo {
+                padding: 12px 20px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="didusec-logo">
+                    <span class="logo-text">DIDUSEC</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Customer Experience with AWS Connect</h1>
+            <p>Deliver exceptional customer service with Amazon's cloud-based contact center solution, expertly implemented by Didusec's certified AWS professionals.</p>
+            <a href="#contact" class="hero-cta">Request a Consultation</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose AWS Connect?</h2>
+                <p>Amazon Connect provides a seamless omnichannel experience that helps you deliver better customer service at a lower cost.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-dollar-sign benefit-icon"></i>
+                    <h3>Pay As You Go</h3>
+                    <p>No upfront costs or long-term commitments. Only pay for what you use with per-minute pricing.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-rocket benefit-icon"></i>
+                    <h3>Easy to Setup</h3>
+                    <p>Set up a contact center in minutes with intuitive tools and a simple self-service graphical interface.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-globe benefit-icon"></i>
+                    <h3>Global Scale</h3>
+                    <p>Operate your contact center across multiple regions with Amazon's reliable infrastructure.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-comments benefit-icon"></i>
+                    <h3>Omnichannel</h3>
+                    <p>Provide a seamless experience across voice, chat, and task management in one interface.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-robot benefit-icon"></i>
+                    <h3>AI-Powered</h3>
+                    <p>Leverage Amazon's machine learning capabilities to improve customer interactions.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt benefit-icon"></i>
+                    <h3>Secure & Compliant</h3>
+                    <p>Meet regulatory requirements with AWS's comprehensive security controls and compliance certifications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Video Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-container">
+                <div class="features-content">
+                    <h2>Key Features of AWS Connect</h2>
+                    <ul class="feature-list">
+                        <li>Intelligent, natural language chatbots powered by Amazon Lex</li>
+                        <li>Smart routing based on customer profiles and agent skills</li>
+                        <li>Real-time and historical analytics dashboards</li>
+                        <li>Automated customer authentication and fraud detection</li>
+                        <li>Integration with CRM systems like Salesforce and ServiceNow</li>
+                        <li>Voice analytics and sentiment analysis</li>
+                        <li>Custom workflows with AWS Lambda integration</li>
+                        <li>APIs for customization and third-party integrations</li>
+                    </ul>
+                </div>
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/syF1CEiWAto" title="AWS Connect Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get Started with AWS Connect</h2>
+                    <p>Ready to transform your contact center operations? Our team of AWS certified experts will help you implement AWS Connect and optimize it for your specific business needs.</p>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-check"></i> Free initial consultation and needs assessment</li>
+                        <li><i class="fas fa-check"></i> Customized implementation plan tailored to your business</li>
+                        <li><i class="fas fa-check"></i> Seamless migration from your existing contact center platform</li>
+                        <li><i class="fas fa-check"></i> Comprehensive training for administrators and agents</li>
+                        <li><i class="fas fa-check"></i> Ongoing support and optimization services</li>
+                    </ul>
+                </div>
+                <div class="contact-card">
+                    <h3>Request a Consultation</h3>
+                    <form action="mailto:marketing@didusec.co.za" method="POST" enctype="text/plain" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="required">First Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="surname" class="required">Last Name</label>
+                                <input type="text" id="surname" name="surname" placeholder="Your last name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company" class="required">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Your company name" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" class="required">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="your.email@company.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="required">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+27 XX XXX XXXX" required>
+                            </div>
+                        </div>
+                        
+                                              
+                        <div class="form-group">
+                            <label for="message" class="required">How Can We Help?</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your current contact center setup and requirements..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="contact-button">
+                            <i class="fas fa-paper-plane"></i> Request Consultation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="contact-info-footer">
+                <h3><i class="fas fa-building"></i> Contact Information</h3>
+                <address>
+                    <p><strong>Didusec (Pty) Ltd</strong></p>
+                    <p>Wembley 1st Floor, The Campus</p>
+                    <p>57 Sloane Street</p>
+                    <p>Bryanston</p>
+                </address>
+                <ul class="contact-details">
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:marketing@didusec.co.za">marketing@didusec.co.za</a></li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+27115933293">+27 11 593 3293</a></li>
+                    <li><i class="fas fa-globe"></i> <a href="https://didusec.co.za" target="_blank">https://didusec.co.za</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-logo">
+                <div class="didusec-footer-logo">
+                    <span class="logo-text">DIDUSEC</span>
+                </div>
+                <p>Your AWS Connect Implementation Partner</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Didusec (Pty) Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
