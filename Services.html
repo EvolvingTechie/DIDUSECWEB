@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - DIDUSEC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0A2E5C;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: #0070AD;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-toggle i {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+        }
+        
+        .dropdown-menu a {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #0A2E5C 0%, #0070AD 100%);
+            color: #fff;
+            padding: 150px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+        }
+        
+        .header-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .header-description {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        /* Service Overview */
+        .service-overview {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #0A2E5C;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #00A8E8;
+        }
+        
+        .overview-text {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .service-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            top: 0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card-header {
+            padding: 30px 30px 20px;
+            position: relative;
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(10, 46, 92, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A2E5C;
+            font-size: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            background-color: #0A2E5C;
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+        
+        .service-title {
+            font-size: 22px;
+            color: #0A2E5C;
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .service-card-footer {
+            padding: 0 30px 30px;
+        }
+        
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            color: #0070AD;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .learn-more i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .learn-more:hover {
+            color: #0A2E5C;
+        }
+        
+        .learn-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Detailed Service Sections */
+        .service-section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .service-section:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+        
+        .service-section:nth-child(even) {
+            background-color: #fff;
+        }
+        
+        .service-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .service-section:nth-child(odd) .service-container {
+            direction: rtl;
+        }
+        
+        .service-section:nth-child(odd) .service-content,
+        .service-section:nth-child(odd) .service-image {
+            direction: ltr;
+        }
+        
+        .service-content {
+            max-width: 600px;
+        }
+        
+        .service-header {
+            margin-bottom: 25px;
+        }
+        
+        .service-header .service-icon {
+            margin-bottom: 20px;
+            width: 80px;
+            height: 80px;
+            font-size: 32px;
+        }
+        
+        .service-header .section-title {
+            margin-bottom: 15px;
+        }
+        
+        .service-header .section-title::after {
+            margin-bottom: 15px;
+        }
+        
+        .service-description {
+            margin-bottom: 30px;
+        }
+        
+        .benefits-list {
+            margin-bottom: 30px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-icon {
+            min-width: 24px;
+            height: 24px;
+            background-color: rgba(0, 168, 232, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0070AD;
+            font-size: 12px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .benefit-text {
+            flex: 1;
+            color: #555;
+        }
+        
+        .solution-approach {
+            margin-bottom: 30px;
+        }
+        
+        .solution-title {
+            font-size: 20px;
+            color: #0A2E5C;
+            margin-bottom: 15px;
+        }
+        
+        .solution-steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .solution-step {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 15px;
+            counter-increment: step-counter;
+        }
+        
+        .solution-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background-color: #0070AD;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .service-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0070AD 0%, #0A2E5C 100%);
+            color: #fff;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #00A8E8;
+            color: #fff;
+            border: 2px solid #00A8E8;
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: #fff;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #0A2E5C;
+            color: #fff;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 28px;
+            color: #00A8E8;
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #00A8E8;
+            transform: translateY(-5px);
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #00A8E8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 14px;
+            color: #00A8E8;
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: #00A8E8;
+            font-size: 18px;
+            margin-top: 3px;
+        }
+        
+        .footer-contact a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-contact a:hover {
+            color: #fff;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-15px) translateX(15px);
+            }
+            50% {
+                transform: translateY(0) translateX(30px);
+            }
+            75% {
+                transform: translateY(15px) translateX(15px);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .service-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .service-section:nth-child(odd) .service-container {
+                direction: ltr;
+            }
+            
+            .service-content {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                max-height: 500px;
+            }
+            
+            .page-header {
+                padding: 120px 0 60px;
+            }
+            
+            .header-title {
+                font-size: 32px;
+            }
+            
+            .header-description {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: #0A2E5C;"></i>
+                <div class="logo-text">DIDUSEC</div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="services/finops.html">FinOps</a></li>
+                            <li><a href="services/it-automation.html">IT Automation</a></li>
+                            <li><a href="services/data-fabric.html">Data Fabric</a></li>
+                            <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="why-choose-us.html">Why Choose Us</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <!-- Animated Particles -->
+        <div class="particles">
+            <div class="particle" style="width: 80px; height: 80px; top: 15%; left: 10%; opacity: 0.1; animation-duration: 28s;"></div>
+            <div class="particle" style="width: 40px; height: 40px; top: 20%; left: 25%; opacity: 0.05; animation-duration: 18s;"></div>
+            <div class="particle" style="width: 100px; height: 100px; top: 60%; left: 5%; opacity: 0.05; animation-duration: 22s;"></div>
+            <div class="particle" style="width: 60px; height: 60px; top: 10%; left: 60%; opacity: 0.06; animation-duration: 15s;"></div>
+            <div class="particle" style="width: 120px; height: 120px; top: 70%; left: 70%; opacity: 0.04; animation-duration: 24s;"></div>
+        </div>
+        
+        <div class="container">
+            <div class="header-content">
+                <h1 class="header-title">Our Services</h1>
+                <p class="header-description">Comprehensive cloud solutions tailored to drive business value and innovation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview -->
+    <section class="service-overview">
+        <div class="container">
+            <h2 class="section-title">How We Help Your Business Succeed</h2>
+            <p class="overview-text">
+                At DIDUSEC, we've developed a comprehensive suite of cloud services designed to address the key challenges businesses face in today's rapidly evolving digital landscape. Our solutions are built to optimize your technology investments, streamline operations, integrate data systems, and accelerate your digital transformation journey.
+            </p>
+            <p class="overview-text">
+                Every service we offer focuses on delivering tangible business value, whether that's reducing costs, increasing operational efficiency, enabling better decision-making, or driving innovation. Our expert team works closely with you to understand your specific needs and implement solutions that align with your strategic objectives.
+            </p>
+            
+            <div class="service-cards">
+                <!-- FinOps Card -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="service-title">FinOps</h3>
+                        <p class="service-description">Optimize your cloud spending and maximize ROI with our comprehensive FinOps solutions.</p>
+                    </div>
+                    <div class="service-card-footer">
+                        <a href="services/finops.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- IT Automation Card -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="service-title">IT Automation</h3>
+                        <p class="service-description">Streamline operations and boost efficiency with intelligent automation solutions.</p>
+                    </div>
+                    <div class="service-card-footer">
+                        <a href="services/it-automation.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Data Fabric Card -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="service-title">Data Fabric</h3>
+                        <p class="service-description">Unify your data architecture for seamless access and management across platforms.</p>
+                    </div>
+                    <div class="service-card-footer">
+                        <a href="services/data-fabric.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Digital Transformation Card -->
+                <div class="service-card">
+                    <div class="service-card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="service-title">Digital Transformation</h3>
+                        <p class="service-description">Evolve your business with cutting-edge digital solutions and infrastructure modernization.</p>
+                    </div>
+                    <div class="service-card-footer">
+                        <a href="services/digital-transformation.html" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FinOps Service Section -->
+    <section class="service-section">
+        <div class="container service-container">
+            <div class="service-content">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h2 class="section-title">FinOps</h2>
+                    <p class="service-description">
+                        Our FinOps service helps organizations optimize their cloud spending, providing visibility, control, and accountability across all cloud environments. We implement a structured approach to cloud financial management that aligns technology, business, and finance perspectives.
+                    </p>
+                </div>
+                
+                <h3 class="solution-title">Business Impact</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Reduced Cloud Waste:</strong> Identify and eliminate unused or over-provisioned resources, typically reducing cloud costs by 20-30%.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Improved Budget Forecasting:</strong> Achieve greater accuracy in cloud spending predictions and avoid unexpected cost overruns.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Enhanced Accountability:</strong> Establish clear ownership of cloud costs across teams and implement efficient chargeback mechanisms.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Optimized ROI:</strong> Ensure every dollar spent on cloud delivers maximum business value and supports strategic objectives.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-approach">
+                    <h3 class="solution-title">Our Solution Approach</h3>
+                    <ol class="solution-steps">
+                        <li class="solution-step">
+                            <strong>Cloud Cost Assessment:</strong> Comprehensive analysis of your current cloud spending patterns and identification of immediate cost-saving opportunities.
+                        </li>
+                        <li class="solution-step">
+                            <strong>FinOps Framework Implementation:</strong> Establish governance processes, policies, and KPIs for ongoing cloud financial management.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Cost Optimization Strategies:</strong> Deploy right-sizing, reserved instances, spot instances, and other cost-reduction techniques.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Monitoring & Reporting:</strong> Implement tools for continuous monitoring, anomaly detection, and comprehensive reporting of cloud costs.
+                        </li>
+                    </ol>
+                </div>
+                
+                <a href="contact-us.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact Us About FinOps</a>
+            </div>
+            
+            <div class="service-image">
+                <img src="https://via.placeholder.com/600x400" alt="FinOps Dashboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- IT Automation Service Section -->
+    <section class="service-section">
+        <div class="container service-container">
+            <div class="service-content">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h2 class="section-title">IT Automation</h2>
+                    <p class="service-description">
+                        Our IT Automation service helps businesses reduce manual effort, minimize human error, and accelerate delivery by implementing intelligent automation across IT operations, infrastructure management, and application deployment.
+                    </p>
+                </div>
+                
+                <h3 class="solution-title">Business Impact</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Operational Efficiency:</strong> Reduce time spent on routine tasks by up to 70%, allowing your team to focus on strategic initiatives.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Error Reduction:</strong> Minimize human errors in repetitive tasks, leading to improved system reliability and stability.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i
+
+<div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Error Reduction:</strong> Minimize human errors in repetitive tasks, leading to improved system reliability and stability.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Faster Delivery:</strong> Accelerate development cycles and deployment processes, reducing time-to-market for new features and applications.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Scalability:</strong> Handle growing workloads without proportional increases in staffing or operational costs.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-approach">
+                    <h3 class="solution-title">Our Solution Approach</h3>
+                    <ol class="solution-steps">
+                        <li class="solution-step">
+                            <strong>Automation Assessment:</strong> Identify processes suitable for automation and prioritize based on ROI and complexity.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Infrastructure as Code:</strong> Implement tools like Terraform, AWS CloudFormation, or Ansible to automate infrastructure provisioning and management.
+                        </li>
+                        <li class="solution-step">
+                            <strong>CI/CD Pipeline Development:</strong> Build automated pipelines for testing, integration, and deployment of applications.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Monitoring & Self-Healing:</strong> Implement automated monitoring systems that can detect and resolve issues without human intervention.
+                        </li>
+                    </ol>
+                </div>
+                
+                <a href="contact-us.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact Us About IT Automation</a>
+            </div>
+            
+            <div class="service-image">
+                <img src="https://via.placeholder.com/600x400" alt="IT Automation Workflow">
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Fabric Service Section -->
+    <section class="service-section">
+        <div class="container service-container">
+            <div class="service-content">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h2 class="section-title">Data Fabric</h2>
+                    <p class="service-description">
+                        Our Data Fabric solution creates a unified data architecture that enables seamless access and sharing of data across different platforms and environments, breaking down silos and providing a consistent view of your information assets.
+                    </p>
+                </div>
+                
+                <h3 class="solution-title">Business Impact</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Data-Driven Decision Making:</strong> Enable faster, more informed business decisions with comprehensive access to all relevant data.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Improved Data Quality:</strong> Enhance data consistency and accuracy through standardized management practices and governance.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Enhanced Collaboration:</strong> Break down departmental data silos, promoting cross-functional collaboration and innovation.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Regulatory Compliance:</strong> Simplify compliance with data protection regulations through centralized governance and security controls.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-approach">
+                    <h3 class="solution-title">Our Solution Approach</h3>
+                    <ol class="solution-steps">
+                        <li class="solution-step">
+                            <strong>Data Discovery & Mapping:</strong> Identify all data sources, their relationships, and current integration points across your organization.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Architecture Design:</strong> Create a tailored data fabric architecture that aligns with your business needs and existing technology landscape.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Integration Implementation:</strong> Deploy data integration technologies that enable real-time data sharing and access across platforms.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Governance & Security:</strong> Establish comprehensive data governance framework with appropriate security controls and access management.
+                        </li>
+                    </ol>
+                </div>
+                
+                <a href="contact-us.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact Us About Data Fabric</a>
+            </div>
+            
+            <div class="service-image">
+                <img src="https://via.placeholder.com/600x400" alt="Data Fabric Architecture">
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Transformation Service Section -->
+    <section class="service-section">
+        <div class="container service-container">
+            <div class="service-content">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h2 class="section-title">Digital Transformation</h2>
+                    <p class="service-description">
+                        Our Digital Transformation service helps businesses evolve their operations, culture, and customer experiences through the strategic application of cloud technologies and innovative digital solutions.
+                    </p>
+                </div>
+                
+                <h3 class="solution-title">Business Impact</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Business Agility:</strong> Increase your organization's ability to respond quickly to market changes and new opportunities.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Enhanced Customer Experience:</strong> Deliver more personalized, responsive, and seamless interactions across all customer touchpoints.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Innovation Acceleration:</strong> Create an environment that fosters continuous innovation and rapid idea implementation.
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="benefit-text">
+                            <strong>Competitive Advantage:</strong> Gain and maintain market leadership through technological differentiation and operational excellence.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="solution-approach">
+                    <h3 class="solution-title">Our Solution Approach</h3>
+                    <ol class="solution-steps">
+                        <li class="solution-step">
+                            <strong>Digital Maturity Assessment:</strong> Evaluate your current digital capabilities and identify key areas for transformation.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Strategy Development:</strong> Create a comprehensive digital transformation roadmap aligned with your business objectives.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Cloud Migration & Modernization:</strong> Migrate legacy systems to cloud platforms and modernize applications for improved performance and scalability.
+                        </li>
+                        <li class="solution-step">
+                            <strong>Change Management & Adoption:</strong> Implement organizational change management processes to ensure successful adoption of new technologies and ways of working.
+                        </li>
+                    </ol>
+                </div>
+                
+                <a href="contact-us.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contact Us About Digital Transformation</a>
+            </div>
+            
+            <div class="service-image">
+                <img src="https://via.placeholder.com/600x400" alt="Digital Transformation Journey">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Transform Your Business?</h2>
+                <p class="cta-description">Contact us today to discuss how our cloud solutions can help you achieve your business goals.</p>
+                <a href="contact-us.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-cloud-upload-alt"></i> DIDUSEC
+                    </div>
+                    <p class="footer-description">Innovative cloud solutions for digital transformation. We help businesses optimize their cloud spending, streamline operations, and accelerate growth.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/didusec-pty-ltd/" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about-us.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="why-choose-us.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                        <li><a href="contact-us.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-services">
+                    <h4 class="footer-title">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services/finops.html"><i class="fas fa-chevron-right"></i> FinOps</a></li>
+                        <li><a href="services/it-automation.html"><i class="fas fa-chevron-right"></i> IT Automation</a></li>
+                        <li><a href="services/data-fabric.html"><i class="fas fa-chevron-right"></i> Data Fabric</a></li>
+                        <li><a href="services/digital-transformation.html"><i class="fas fa-chevron-right"></i> Digital Transformation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Wembley, The Campus, 57 Sloane Street, Bryanston</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:0115933293">011 593 3293</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:marketing@didusec.co.za">marketing@didusec.co.za</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Monday - Friday: 9am - 5pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 DIDUSEC. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
