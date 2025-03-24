@@ -132,7 +132,8 @@
             padding: 8px 0;
         }
         
-        .dropdown:hover .dropdown-menu {
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -284,163 +285,154 @@
             border: 2px solid #fff;
         }
         
-     .services-section {
-        padding: 100px 0;
-        background-color: #fff;
-    }
-    
-    .service-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 80px;
-        background-color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .service-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-    
-    .service-item.reverse {
-        flex-direction: row-reverse;
-    }
-    
-    .service-content {
-        flex: 1;
-        padding: 50px;
-        position: relative;
-    }
-    
-    .service-image {
-        flex: 1;
-        height: 400px;
-        overflow: hidden;
-        position: relative;
-    }
-    
-    .service-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-    
-    .service-item:hover .service-image img {
-        transform: scale(1.05);
-    }
-    
-    .service-icon {
-        width: 70px;
-        height: 70px;
-        background-color: rgba(10, 46, 92, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        color: #0A2E5C;
-        margin-bottom: 20px;
-        transition: all 0.3s ease;
-    }
-    
-    .service-item:hover .service-icon {
-        background-color: #0A2E5C;
-        color: #fff;
-    }
-    
-    .service-title {
-        font-size: 24px;
-        color: #0A2E5C;
-        margin-bottom: 15px;
-    }
-    
-    .service-features {
-        list-style: none;
-        margin: 0 0 15px 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 20px;
-        margin-bottom: 20px;
-    }
-    
-    .service-features li {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 8px;
-    }
-    
-    .service-features li i {
-        color: #00A8E8;
-        margin-right: 10px;
-        font-size: 14px;
-    }
-    
-    .service-description {
-        color: #555;
-        margin-bottom: 25px;
-        line-height: 1.6;
-    }
-    
-    .service-button {
-        display: inline-flex;
-        align-items: center;
-        background-color: #0A2E5C;
-        color: #fff;
-        padding: 12px 25px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    
-    .service-button i {
-        margin-left: 8px;
-        transition: transform 0.3s ease;
-    }
-    
-    .service-button:hover {
-        background-color: #00A8E8;
-    }
-    
-    .service-button:hover i {
-        transform: translateX(5px);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-        .service-item, 
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #0A2E5C;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #00A8E8;
+        }
+        
+        .service-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
         .service-item.reverse {
-            flex-direction: column;
+            flex-direction: row-reverse;
         }
         
         .service-content {
-            padding: 30px;
-            order: 2;
+            flex: 1;
+            padding: 50px;
+            position: relative;
         }
         
         .service-image {
-            width: 100%;
-            height: 250px;
-            order: 1;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .service-features li {
-            width: 100%;
+            flex: 1;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
         }
         
-        .service-content {
-            padding: 25px;
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-    }
-</style>
+        
+        .service-item:hover .service-image img {
+            transform: scale(1.05);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(10, 46, 92, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #0A2E5C;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover .service-icon {
+            background-color: #0A2E5C;
+            color: #fff;
+        }
+        
+        .service-title {
+            font-size: 24px;
+            color: #0A2E5C;
+            margin-bottom: 15px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin: 0 0 15px 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            margin-bottom: 20px;
+        }
+        
+        .service-features li {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        
+        .service-features li i {
+            color: #00A8E8;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .service-description {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .service-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #0A2E5C;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .service-button i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-button:hover {
+            background-color: #00A8E8;
+        }
+        
+        .service-button:hover i {
+            transform: translateX(5px);
+        }
+        
         /* Partners Section */
         .partners-section {
             padding: 100px 0;
@@ -535,132 +527,130 @@
             margin-right: 10px;
         }
         
-       /* Contact Section */
-.contact-section {
-    padding: 100px 0;
-    background-color: #fff;
-}
-
-.contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-.contact-subtitle {
-    font-size: 28px;
-    color: #0A2E5C;
-    margin-bottom: 20px;
-}
-
-.contact-description {
-    color: #555;
-    margin-bottom: 30px;
-    font-size: 18px;
-}
-
-.contact-details .benefit-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
-}
-
-.contact-details .benefit-icon {
-    min-width: 24px;
-    height: 24px;
-    background-color: rgba(0, 168, 232, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #0070AD;
-    font-size: 12px;
-    margin-right: 15px;
-    margin-top: 3px;
-}
-
-.contact-details .benefit-text {
-    flex: 1;
-    color: #555;
-}
-
-.contact-details a {
-    color: #00A8E8;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contact-details a:hover {
-    color: #0A2E5C;
-}
-
-.contact-form-container {
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.form-group {
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 12px 12px 40px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-}
-
-.form-group textarea {
-    resize: vertical;
-}
-
-.form-group .input-icon {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    color: #0A2E5C;
-}
-
-.form-group h4 {
-    font-size: 16px;
-    color: #0A2E5C;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.form-group h4 i {
-    margin-right: 8px;
-    color: #00A8E8;
-}
-
-/* Updated Checkbox Group */
-        /* Updated Checkbox Group */
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .contact-subtitle {
+            font-size: 28px;
+            color: #0A2E5C;
+            margin-bottom: 20px;
+        }
+        
+        .contact-description {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .contact-details .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-details .benefit-icon {
+            min-width: 24px;
+            height: 24px;
+            background-color: rgba(0, 168, 232, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0070AD;
+            font-size: 12px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .contact-details .benefit-text {
+            flex: 1;
+            color: #555;
+        }
+        
+        .contact-details a {
+            color: #00A8E8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: #0A2E5C;
+        }
+        
+        .contact-form-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+        }
+        
+        .form-group .input-icon {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            color: #0A2E5C;
+        }
+        
+        .form-group h4 {
+            font-size: 16px;
+            color: #0A2E5C;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group h4 i {
+            margin-right: 8px;
+            color: #00A8E8;
+        }
+        
         .checkbox-group {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
-            gap: 15px 20px; /* Vertical and horizontal spacing */
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 20px;
             padding: 10px 0;
         }
-
+        
         .checkbox-label {
             display: flex;
             align-items: center;
-            padding: 5px 0; /* Adds vertical spacing within each label */
+            padding: 5px 0;
         }
-
+        
         .checkbox-label input {
             position: absolute;
             opacity: 0;
             cursor: pointer;
         }
-
+        
         .checkbox-custom {
             width: 20px;
             height: 20px;
@@ -673,29 +663,29 @@
             background-color: #fff;
             transition: all 0.3s ease;
         }
-
+        
         .checkbox-custom i {
             color: #fff;
             font-size: 12px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-
+        
         .checkbox-label input:checked + .checkbox-custom {
             background-color: #00A8E8;
             border-color: #00A8E8;
         }
-
+        
         .checkbox-label input:checked + .checkbox-custom i {
             opacity: 1;
         }
-
+        
         .checkbox-text {
             font-size: 14px;
             color: #555;
             line-height: 1.4;
         }
-
+        
         .submit-button {
             background-color: #0A2E5C;
             color: #fff;
@@ -711,22 +701,14 @@
             justify-content: center;
             width: 100%;
         }
-
+        
         .submit-button i {
             margin-right: 8px;
         }
-
+        
         .submit-button:hover {
             background-color: #00A8E8;
         }
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .checkbox-group {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 12px; /* Consistent vertical spacing */
-    }
-}
         
         /* Footer */
         .footer {
@@ -881,6 +863,23 @@
         
         /* Responsive Styles */
         @media (max-width: 992px) {
+            .service-item, 
+            .service-item.reverse {
+                flex-direction: column;
+            }
+            
+            .service-content {
+                padding: 30px;
+                order: 2;
+            }
+            
+            .service-image {
+                width: 100%;
+                height: auto;
+                min-height: 200px;
+                order: 1;
+            }
+            
             .contact-wrapper {
                 grid-template-columns: 1fr;
             }
@@ -892,14 +891,29 @@
                 padding: 15px 0;
             }
             
-            nav ul {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
+            .nav-toggle {
+                display: block;
             }
             
-            nav li {
-                margin: 5px 10px;
+            nav ul.main-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.main-menu.active {
+                display: flex;
+            }
+            
+            nav li.nav-item {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
             }
             
             .dropdown-menu {
@@ -937,6 +951,19 @@
             .hero-icon-container {
                 flex-wrap: wrap;
             }
+            
+            .service-features li {
+                width: 100%;
+            }
+            
+            .service-content {
+                padding: 25px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
         }
     </style>
 </head>
@@ -949,33 +976,33 @@
                 <div class="logo-text">DIDUSEC</div>
             </div>
             
-        <div class="main-nav">
-    <button class="nav-toggle" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <nav>
-        <ul class="main-menu">
-            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="About US.html" class="nav-link">About Us</a></li>
-            <li class="nav-item dropdown">
-                <a href="javascript:void(0)" class="nav-link dropdown-toggle">
-                    Services <i class="fas fa-chevron-down"></i>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="FinOps.html"><i class="fas fa-chart-pie"></i> FinOps</a></li>
-                    <li><a href="IT Automation.html"><i class="fas fa-robot"></i> IT Automation</a></li>
-                    <li><a href="Backup and Restore.html"><i class="fas fa-database"></i> Backup & Restore</a></li>
-                    <li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-database"></i> Cloud-Based Omnichannel</a></li>
-                    <li><a href="Data Fabric.html"><i class="fas fa-network-wired"></i> Data Fabric</a></li>
-                    <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-rocket"></i> Digital Transformation</a></li>
-                </ul>
-            </li>
-            <li class="nav-item"><a href="Why Choose Us.html" class="nav-link">Why Choose Us</a></li>
-            <li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
-        </ul>
-    </nav>
-</div>
+            <div class="main-nav">
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul class="main-menu">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="About US.html" class="nav-link">About Us</a></li>
+                        <li class="nav-item dropdown">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle" tabindex="0">
+                                Services <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="FinOps.html"><i class="fas fa-chart-pie"></i> FinOps</a></li>
+                                <li><a href="IT Automation.html"><i class="fas fa-robot"></i> IT Automation</a></li>
+                                <li><a href="Backup and Restore.html"><i class="fas fa-database"></i> Backup & Restore</a></li>
+                                <li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-database"></i> Cloud-Based Omnichannel</a></li>
+                                <li><a href="Data Fabric.html"><i class="fas fa-network-wired"></i> Data Fabric</a></li>
+                                <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-rocket"></i> Digital Transformation</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="Why Choose Us.html" class="nav-link">Why Choose Us</a></li>
+                        <li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -1007,83 +1034,84 @@
         </div>
     </section>
 
-   <section class="services-section">
-    <div class="container">
-        <h2 class="section-title">Our Services</h2>
-        
-        <!-- Service 1 -->
-        <div class="service-item">
-            <div class="service-content">
-                <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
-                <h3 class="service-title">FinOps</h3>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Cost optimization</li>
-                    <li><i class="fas fa-check"></i> Cloud expense management</li>
-                    <li><i class="fas fa-check"></i> ROI maximization</li>
-                </ul>
-                <p class="service-description">Optimize your cloud spending and maximize ROI with our FinOps solutions. We help you gain visibility and control over your cloud resources and costs.</p>
-                <a href="FinOps.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            
+            <!-- Service 1 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3 class="service-title">FinOps</h3>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Cost optimization</li>
+                        <li><i class="fas fa-check"></i> Cloud expense management</li>
+                        <li><i class="fas fa-check"></i> ROI maximization</li>
+                    </ul>
+                    <p class="service-description">Optimize your cloud spending and maximize ROI with our FinOps solutions. We help you gain visibility and control over your cloud resources and costs.</p>
+                    <a href="FinOps.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-image">
+                    <img src="FinOps image.jpg" alt="FinOps Service">
+                </div>
             </div>
-            <div class="service-image">
-                <img src="/api/placeholder/600/400" alt="FinOps Service" />
+            
+            <!-- Service 2 (reversed layout) -->
+            <div class="service-item reverse">
+                <div class="service-image">
+                    <img src="IT Automation.jpg" alt="IT Automation Service">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon"><i class="fas fa-robot"></i></div>
+                    <h3 class="service-title">IT Automation</h3>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Process automation</li>
+                        <li><i class="fas fa-check"></i> Efficiency improvement</li>
+                        <li><i class="fas fa-check"></i> Resource optimization</li>
+                    </ul>
+                    <p class="service-description">Streamline operations and boost efficiency with intelligent automation solutions. Reduce manual tasks and focus your team on strategic initiatives.</p>
+                    <a href="IT Automation.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-icon"><i class="fas fa-database"></i></div>
+                    <h3 class="service-title">Data Fabric</h3>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Data integration</li>
+                        <li><i class="fas fa-check"></i> Seamless access</li>
+                        <li><i class="fas fa-check"></i> Cross-platform management</li>
+                    </ul>
+                    <p class="service-description">Unify your data architecture for seamless access and management across platforms. Break down data silos and enable better decision-making across your organization.</p>
+                    <a href="Data Fabric.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-image">
+                    <img src="Data Fabs.jpg" alt="Data Fabric Service">
+                </div>
+            </div>
+            
+            <!-- Service 4 (reversed layout) -->
+            <div class="service-item reverse">
+                <div class="service-image">
+                    <img src="Digital Transformation.jpg" alt="Digital Transformation Service">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="service-title">Digital Transformation</h3>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Business modernization</li>
+                        <li><i class="fas fa-check"></i> Cloud migration</li>
+                        <li><i class="fas fa-check"></i> Infrastructure optimization</li>
+                    </ul>
+                    <p class="service-description">Evolve your business with cutting-edge digital solutions and infrastructure modernization. Stay competitive in today's rapidly changing digital landscape.</p>
+                    <a href="Digital Transformations and Modernization.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
-        
-        <!-- Service 2 (reversed layout) -->
-        <div class="service-item reverse">
-            <div class="service-image">
-                <img src="/api/placeholder/600/400" alt="IT Automation Service" />
-            </div>
-            <div class="service-content">
-                <div class="service-icon"><i class="fas fa-robot"></i></div>
-                <h3 class="service-title">IT Automation</h3>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Process automation</li>
-                    <li><i class="fas fa-check"></i> Efficiency improvement</li>
-                    <li><i class="fas fa-check"></i> Resource optimization</li>
-                </ul>
-                <p class="service-description">Streamline operations and boost efficiency with intelligent automation solutions. Reduce manual tasks and focus your team on strategic initiatives.</p>
-                <a href="IT Automation.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-        
-        <!-- Service 3 -->
-        <div class="service-item">
-            <div class="service-content">
-                <div class="service-icon"><i class="fas fa-database"></i></div>
-                <h3 class="service-title">Data Fabric</h3>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Data integration</li>
-                    <li><i class="fas fa-check"></i> Seamless access</li>
-                    <li><i class="fas fa-check"></i> Cross-platform management</li>
-                </ul>
-                <p class="service-description">Unify your data architecture for seamless access and management across platforms. Break down data silos and enable better decision-making across your organization.</p>
-                <a href="Data Fabric.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="service-image">
-                <img src="/api/placeholder/600/400" alt="Data Fabric Service" />
-            </div>
-        </div>
-        
-        <!-- Service 4 (reversed layout) -->
-        <div class="service-item reverse">
-            <div class="service-image">
-                <img src="/api/placeholder/600/400" alt="Digital Transformation Service" />
-            </div>
-            <div class="service-content">
-                <div class="service-icon"><i class="fas fa-rocket"></i></div>
-                <h3 class="service-title">Digital Transformation</h3>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Business modernization</li>
-                    <li><i class="fas fa-check"></i> Cloud migration</li>
-                    <li><i class="fas fa-check"></i> Infrastructure optimization</li>
-                </ul>
-                <p class="service-description">Evolve your business with cutting-edge digital solutions and infrastructure modernization. Stay competitive in today's rapidly changing digital landscape.</p>
-                <a href="Digital Transformations and Modernization.html" class="service-button">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Partners Section -->
     <section class="partners-section">
@@ -1133,97 +1161,98 @@
         </div>
     </section>
 
-   <!-- Contact Section -->
-<section class="contact-section">
-    <div class="container">
-        <h2 class="section-title">Get in Touch</h2>
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <h3 class="contact-subtitle"><i class="fas fa-rocket"></i> Ready to Transform Your Business?</h3>
-                <p class="contact-description">Connect with us to explore how our innovative cloud solutions can help you achieve your business goals.</p>
-                <div class="contact-details">
-                    <div class="benefit-item">
-                        <div class="benefit-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="benefit-text">
-                            <strong>Visit Us</strong>
-                            <p>Wembley, The Campus, 57 Sloane Street, Bryanston</p>
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 class="contact-subtitle"><i class="fas fa-rocket"></i> Ready to Transform Your Business?</h3>
+                    <p class="contact-description">Connect with us to explore how our innovative cloud solutions can help you achieve your business goals.</p>
+                    <div class="contact-details">
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="benefit-text">
+                                <strong>Visit Us</strong>
+                                <p>Wembley, The Campus, 57 Sloane Street, Bryanston</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon"><i class="fas fa-phone-alt"></i></div>
-                        <div class="benefit-text">
-                            <strong>Call Us</strong>
-                            <p><a href="tel:0115933293">011 593 3293</a></p>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-phone-alt"></i></div>
+                            <div class="benefit-text">
+                                <strong>Call Us</strong>
+                                <p><a href="tel:0115933293">011 593 3293</a></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="benefit-text">
-                            <strong>Email Us</strong>
-                            <p><a href="mailto:marketing@didusec.co.za">marketing@didusec.co.za</a></p>
-                            <p><a href="mailto:info@didusec.co.za">info@didusec.co.za</a></p>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="benefit-text">
+                                <strong>Email Us</strong>
+                                <p><a href="mailto:marketing@didusec.co.za">marketing@didusec.co.za</a></p>
+                                <p><a href="mailto:info@didusec.co.za">info@didusec.co.za</a></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon"><i class="fas fa-clock"></i></div>
-                        <div class="benefit-text">
-                            <strong>Operating Hours</strong>
-                            <p>Monday - Friday: 9am - 5pm</p>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                            <div class="benefit-text">
+                                <strong>Operating Hours</strong>
+                                <p>Monday - Friday: 9am - 5pm</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="contact-form-container">
-                <form id="contact-form" action="/wp-admin/admin-ajax.php" method="post">
-                    <input type="hidden" name="action" value="contact_form_submission">
-                    <div class="form-group">
-                        <div class="input-icon"><i class="fas fa-user"></i></div>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon"><i class="fas fa-envelope"></i></div>
-                        <input type="email" id="email" name="email" placeholder="Work Email" required>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon"><i class="fas fa-building"></i></div>
-                        <input type="text" id="company" name="company" placeholder="Company Name" required>
-                    </div>
-                    <div class="form-group">
-                        <h4><i class="fas fa-list-ul"></i> What are you interested in?</h4>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="Digital Transformation">
-                                <span class="checkbox-custom"><i class="fas fa-check"></i></span>
-                                <span class="checkbox-text">Digital Transformation</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="Data Fabric">
-                                <span class="checkbox-custom"><i class="fas fa-check"></i></span>
-                                <span class="checkbox-text">Data Fabric</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="FinOps">
-                                <span class="checkbox-custom"><i class="fas fa-check"></i></span>
-                                <span class="checkbox-text">FinOps</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="IT Automation">
-                                <span class="checkbox-custom"><i class="fas fa-check"></i></span>
-                                <span class="checkbox-text">IT Automation</span>
-                            </label>
+                
+                <div class="contact-form-container">
+                    <form id="contact-form" action="#" method="post" onsubmit="event.preventDefault(); console.log('Form submitted');">
+                        <input type="hidden" name="action" value="contact_form_submission">
+                        <div class="form-group">
+                            <div class="input-icon"><i class="fas fa-user"></i></div>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon"><i class="fas fa-comment"></i></div>
-                        <textarea id="message" name="message" placeholder="Your Message" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Send Message</button>
-                </form>
+                        <div class="form-group">
+                            <div class="input-icon"><i class="fas fa-envelope"></i></div>
+                            <input type="email" id="email" name="email" placeholder="Work Email" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-icon"><i class="fas fa-building"></i></div>
+                            <input type="text" id="company" name="company" placeholder="Company Name" required>
+                        </div>
+                        <div class="form-group">
+                            <h4><i class="fas fa-list-ul"></i> What are you interested in?</h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="interests[]" value="Digital Transformation">
+                                    <span class="checkbox-custom"><i class="fas fa-check"></i></span>
+                                    <span class="checkbox-text">Digital Transformation</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="interests[]" value="Data Fabric">
+                                    <span class="checkbox-custom"><i class="fas fa-check"></i></span>
+                                    <span class="checkbox-text">Data Fabric</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="interests[]" value="FinOps">
+                                    <span class="checkbox-custom"><i class="fas fa-check"></i></span>
+                                    <span class="checkbox-text">FinOps</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="interests[]" value="IT Automation">
+                                    <span class="checkbox-custom"><i class="fas fa-check"></i></span>
+                                    <span class="checkbox-text">IT Automation</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-icon"><i class="fas fa-comment"></i></div>
+                            <textarea id="message" name="message" placeholder="Your Message" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1234,8 +1263,8 @@
                     </div>
                     <p class="footer-description">Innovative Cloud Solutions for Digital Transformation</p>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/company/didusec-pty-ltd/" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=100051923780342" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/didusec-pty-ltd/" class="social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100051923780342" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
                 
@@ -1247,7 +1276,7 @@
                         <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
                         <li><a href="Why Choose Us.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
                         <li><a href="contact-us.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-                          <li><a href="Privacy Policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy </a></li>
+                        <li><a href="Privacy Policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
                     </ul>
                 </div>
                 
@@ -1300,8 +1329,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const header = document.querySelector('header');
+            const navToggle = document.querySelector('.nav-toggle');
+            const mainMenu = document.querySelector('.main-menu');
             const dropdowns = document.querySelectorAll('.dropdown');
             let lastScrollTop = 0;
+
+            // Mobile navigation toggle
+            navToggle.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                mainMenu.classList.toggle('active');
+            });
 
             // Dropdown menu toggle for mobile
             dropdowns.forEach(dropdown => {
