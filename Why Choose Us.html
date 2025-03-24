@@ -60,38 +60,60 @@
             color: #0A2E5C;
         }
         
-        nav ul {
-            display: flex;
-            list-style: none;
+       
+        .main-nav {
+            position: relative;
         }
         
-        nav li {
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #0A2E5C;
+            cursor: pointer;
+        }
+        
+        nav ul.main-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        nav li.nav-item {
             margin-left: 30px;
             position: relative;
         }
         
-        nav a {
+        nav a.nav-link {
             text-decoration: none;
             color: #333;
             font-weight: 500;
             font-size: 16px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             display: block;
             padding: 5px 0;
         }
         
-        nav a:hover {
+        nav a.nav-link:hover {
             color: #0070AD;
         }
         
         .dropdown-toggle {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            width: 100%;
         }
         
         .dropdown-toggle i {
             margin-left: 5px;
             font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown.active .dropdown-toggle i {
+            transform: rotate(180deg);
         }
         
         .dropdown-menu {
@@ -99,7 +121,7 @@
             top: 100%;
             left: 0;
             background-color: #fff;
-            min-width: 200px;
+            min-width: 220px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
             opacity: 0;
@@ -107,6 +129,7 @@
             transform: translateY(10px);
             transition: all 0.3s ease;
             z-index: 100;
+            padding: 8px 0;
         }
         
         .dropdown:hover .dropdown-menu {
@@ -117,17 +140,22 @@
         
         .dropdown-menu li {
             margin: 0;
+            display: block;
+            width: 100%;
         }
         
         .dropdown-menu a {
             padding: 10px 15px;
-            border-bottom: 1px solid #f5f5f5;
+            display: block;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
         }
         
         .dropdown-menu a:hover {
-            background-color: #f8f9fa;
+            background-color: #f0f5ff;
+            border-left: 3px solid #0070AD;
         }
-        
+
         /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, #0A2E5C 0%, #0070AD 100%);
@@ -507,23 +535,31 @@
                 <div class="logo-text">DIDUSEC</div>
             </div>
             
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="About US.html">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="Services.html" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="FinOps.html">FinOps</a></li>
-                            <li><a href="IT Automation.html">IT Automation</a></li>
-                            <li><a href="Data Fabric.html">Data Fabric</a></li>
-                            <li><a href="Digital Transformations and Modernization.html">Digital Transformation</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="Why Choose Us.html">Why Choose Us</a></li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
-                </ul>
-            </nav>
+           <div class="main-nav">
+<button class="nav-toggle" aria-label="Toggle navigation">
+<i class="fas fa-bars"></i>
+</button>
+<nav>
+<ul class="main-menu">
+<li class="nav-item"><a href="Index.html" class="nav-link">Home</a></li>
+<li class="nav-item"><a href="About US.html" class="nav-link">About Us</a></li>
+<li class="nav-item dropdown">
+<a href="javascript:void(0)" class="nav-link dropdown-toggle">
+                    Services <i class="fas fa-chevron-down"></i>
+</a>
+<ul class="dropdown-menu">
+<li><a href="FinOps.html"><i class="fas fa-chart-pie"></i> FinOps</a></li>
+<li><a href="IT Automation.html"><i class="fas fa-robot"></i> IT Automation</a></li>
+<li><a href="Backup and Restore.html"><i class="fas fa-database"></i> Backup & Restore</a></li>
+<li><a href="Data Fabric.html"><i class="fas fa-network-wired"></i> Data Fabric</a></li>
+<li><a href="Digital Transformations and Modernization.html"><i class="fas fa-rocket"></i> Digital Transformation</a></li>
+</ul>
+</li>
+<li class="nav-item"><a href="Why Choose Us.html" class="nav-link">Why Choose Us</a></li>
+<li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
+</ul>
+</nav>
+</div>
         </div>
     </header>
 
