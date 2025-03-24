@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud-Based Omnichannel - DIDUSEC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0A2E5C;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: #0070AD;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-toggle i {
+            margin-left: 5px;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown.active .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            min-width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            padding: 8px 0;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            display: block;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            padding: 10px 15px;
+            display: block;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f0f5ff;
+            border-left: 3px solid #0070AD;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #0A2E5C 0%, #0070AD 100%);
+            color: #fff;
+            padding: 150px 0 80px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-icon-main {
+            font-size: 60px;
+            color: #00A8E8;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .hero-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .spin-icon {
+            margin-right: 10px;
+            animation: spin 10s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-description {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #00A8E8;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-button i {
+            margin-right: 8px;
+        }
+        
+        .hero-button:hover {
+            background-color: transparent;
+            border: 2px solid #fff;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #0A2E5C;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #00A8E8;
+        }
+        
+        .benefits-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        
+        .benefit-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: #0A2E5C;
+            transition: background 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-card:hover::before {
+            background: #00A8E8;
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
+            background-color: rgba(10, 46, 92, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            font-size: 32px;
+            color: #0A2E5C;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover .benefit-icon {
+            background-color: #0A2E5C;
+            color: #fff;
+        }
+        
+        .benefit-content {
+            flex: 1;
+        }
+        
+        .benefit-title {
+            font-size: 22px;
+            color: #0A2E5C;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-features {
+            list-style: none;
+            margin: 0 0 15px 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+        
+        .benefit-features li {
+            display: flex;
+            align-items: center;
+            width: calc(50% - 10px);
+        }
+        
+        .benefit-features li i {
+            color: #00A8E8;
+            margin-right: 10px;
+        }
+        
+        .benefit-description {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-item i {
+            color: #00A8E8;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-item h3 {
+            font-size: 18px;
+            color: #0A2E5C;
+            margin-bottom: 10px;
+        }
+        
+        .feature-item p {
+            color: #555;
+            font-size: 14px;
+        }
+        
+        /* Video Section */
+        .video-section {
+            padding: 100px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #0A2E5C;
+            color: #fff;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 28px;
+            color: #00A8E8;
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #00A8E8;
+            transform: translateY(-5px);
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #00A8E8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 14px;
+            color: #00A8E8;
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: #00A8E8;
+            font-size: 18px;
+            margin-top: 3px;
+        }
+        
+        .footer-contact a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-contact a:hover {
+            color: #fff;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-15px) translateX(15px); }
+            50% { transform: translateY(0) translateX(30px); }
+            75% { transform: translateY(15px) translateX(15px); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                max-height: 500px;
+            }
+            
+            .hero-section {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: #0A2E5C;"></i>
+                <div class="logo-text">DIDUSEC</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="About US.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="FinOps.html">FinOps</a></li>
+                            <li><a href="IT Automation.html">IT Automation</a></li>
+                            <li><a href="Backup and Restore.html">Backup & Restore</a></li>
+                            <li><a href="Data Fabric.html">Data Fabric</a></li>
+                            <li><a href="Digital Transformations and Modernization.html">Digital Transformation</a></li>
+                            <li><a href="Cloud-Based Omnichannel.html">Cloud-Based Omnichannel</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Why Choose Us.html">Why Choose Us</a></li>
+                    <li><a href="Contact US.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="particles">
+            <div class="particle" style="width: 80px; height: 80px; top: 15%; left: 10%; opacity: 0.1; animation-duration: 28s;"></div>
+            <div class="particle" style="width: 40px; height: 40px; top: 20%; left: 25%; opacity: 0.05; animation-duration: 18s;"></div>
+            <div class="particle" style="width: 100px; height: 100px; top: 60%; left: 5%; opacity: 0.05; animation-duration: 22s;"></div>
+            <div class="particle" style="width: 60px; height: 60px; top: 10%; left: 60%; opacity: 0.06; animation-duration: 15s;"></div>
+            <div class="particle" style="width: 120px; height: 120px; top: 70%; left: 70%; opacity: 0.04; animation-duration: 24s;"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-icon-main">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h1 class="hero-title">Cloud-Based Omnichannel with AWS Connect</h1>
+                <p class="hero-subtitle"><i class="fas fa-sync-alt spin-icon"></i> Seamless Customer Engagement</p>
+                <p class="hero-description">Leverage Amazon Connect to unify customer interactions across all channels, implemented by DIDUSEC’s certified AWS experts.</p>
+                <a href="Contact US.html" class="hero-button"><i class="fas fa-play"></i> Request a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section (Expanded with AWS Connect) -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">Why AWS Connect for Omnichannel?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Pay As You Go</h3>
+                        <ul class="benefit-features">
+                            <li><i class="fas fa-check"></i> No upfront costs</li>
+                            <li><i class="fas fa-check"></i> Per-minute pricing</li>
+                        </ul>
+                        <p class="benefit-description">With AWS Connect, eliminate long-term commitments and pay only for the minutes you use, optimizing your budget.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Rapid Deployment</h3>
+                        <ul class="benefit-features">
+                            <li><i class="fas fa-check"></i> Setup in minutes</li>
+                            <li><i class="fas fa-check"></i> Self-service tools</li>
+                        </ul>
+                        <p class="benefit-description">Launch your contact center quickly with AWS Connect’s intuitive graphical interface and DIDUSEC’s expert support.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-globe"></i></div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Global Scalability</h3>
+                        <ul class="benefit-features">
+                            <li><i class="fas fa-check"></i> Multi-region support</li>
+                            <li><i class="fas fa-check"></i> Reliable infrastructure</li>
+                        </ul>
+                        <p class="benefit-description">Operate seamlessly across regions with AWS’s robust cloud network, tailored to your global needs by DIDUSEC.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-comments"></i></div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Omnichannel Excellence</h3>
+                        <ul class="benefit-features">
+                            <li><i class="fas fa-check"></i> Voice, chat, tasks</li>
+                            <li><i class="fas fa-check"></i> Unified interface</li>
+                        </ul>
+                        <p class="benefit-description">AWS Connect integrates voice, chat, and task management into one platform for a consistent customer experience.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-robot"></i></div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">AI-Powered Interactions</h3>
+                        <ul class="benefit-features">
+                            <li><i class="fas fa-check"></i> Amazon Lex chatbots</li>
+                            <li><i class="fas fa-check"></i> Sentiment analysis</li>
+                        </ul>
+                        <p class="benefit-description">Enhance customer service with AWS Connect’s machine learning, including natural language processing and automation.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Security & Compliance</h3>
+                        <ul class="benefit-features">
+                            <li><i class="fas fa-check"></i> Robust security controls</li>
+                            <li><i class="fas fa-check"></i> Compliance certifications</li>
+                        </ul>
+                        <p class="benefit-description">Meet regulatory standards with AWS Connect’s comprehensive security, backed by DIDUSEC’s expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (New AWS Connect Content) -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Key Features of AWS Connect</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-comment-alt"></i>
+                    <h3>Intelligent Chatbots</h3>
+                    <p>Powered by Amazon Lex, AWS Connect offers natural language chatbots to handle customer queries efficiently.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-random"></i>
+                    <h3>Smart Routing</h3>
+                    <p>Route interactions based on customer profiles and agent skills for faster resolutions.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Access real-time and historical dashboards to monitor performance and optimize operations.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Automated Authentication</h3>
+                    <p>Enhance security with automated customer authentication and fraud detection capabilities.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-plug"></i>
+                    <h3>CRM Integration</h3>
+                    <p>Seamlessly integrate with systems like Salesforce and ServiceNow for a unified workflow.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Custom Workflows</h3>
+                    <p>Build tailored solutions with AWS Lambda integration and APIs for third-party tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">What is AWS Connect?</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/syF1CEiWAto" title="AWS Connect Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-cloud-upload-alt"></i> DIDUSEC
+                    </div>
+                    <p class="footer-description">Innovative Cloud Solutions for Digital Transformation</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/didusec-pty-ltd/" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100051923780342" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="Index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="About US.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="Why Choose Us.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                        <li><a href="Contact US.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4 class="footer-title">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="FinOps.html"><i class="fas fa-chevron-right"></i> FinOps</a></li>
+                        <li><a href="IT Automation.html"><i class="fas fa-chevron-right"></i> IT Automation</a></li>
+                        <li><a href="Backup and Restore.html"><i class="fas fa-chevron-right"></i> Backup & Restore</a></li>
+                        <li><a href="Data Fabric.html"><i class="fas fa-chevron-right"></i> Data Fabric</a></li>
+                        <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-chevron-right"></i> Digital Transformation</a></li>
+                        <li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-chevron-right"></i> Cloud-Based Omnichannel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="footer-title">Contact Information</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Wembley, The Campus, 57 Sloane Street, Bryanston</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:0115933293">011 593 3293</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:marketing@didusec.co.za">marketing@didusec.co.za</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@didusec.co.za">info@didusec.co.za</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri 9am-5pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 DIDUSEC. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            const dropdowns = document.querySelectorAll('.dropdown');
+            let lastScrollTop = 0;
+
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', function() {
+                let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScrollTop > lastScrollTop && currentScrollTop > 0) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+            });
+        });
+    </script>
+</body>
+</html>
