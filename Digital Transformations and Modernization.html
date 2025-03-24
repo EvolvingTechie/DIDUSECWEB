@@ -333,8 +333,57 @@
         .btn i {
             margin-right: 8px;
         }
+
+          /* Amazon Connect Section */
+        .amazon-connect-section {
+            background: linear-gradient(135deg, #0A2E5C 0%, #0070AD 100%);
+            padding: 80px 0;
+            color: #fff;
+            text-align: center;
+        }
         
+        .amazon-connect-section .section-title {
+            color: #fff;
+        }
+        
+        .amazon-connect-section .section-title::after {
+            background-color: #00A8E8;
+        }
+        
+        .connect-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .connect-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .learn-more-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: #00A8E8;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .learn-more-button i {
+            margin-left: 10px;
+        }
+        
+        .learn-more-button:hover {
+            background-color: transparent;
+            border: 2px solid #fff;
+        }
         /* Footer */
+        
         .footer {
             background-color: #0A2E5C;
             color: #fff;
@@ -645,6 +694,17 @@
         </div>
     </section>
 
+     <!-- AWS Connect Section -->
+    <section class="amazon-connect-section">
+        <div class="container">
+            <h2 class="section-title">Cloud-Based Omnichannel Contact Centre</h2>
+            <div class="connect-content">
+                <p><strong>Amazon Connect</strong> is an easy-to-use, cloud-based omnichannel contact center that elevates customer experiences with fewer resources. With <strong>AWS Partners</strong> and Amazon Connect, launch quickly, train agents in minutes, and leverage <strong>AI</strong> and <strong>ML</strong> to enhance interactions.</p>
+                <a href="AWS Connect Solutions by Didusec.html" class="learn-more-button">Learn More About Amazon Connect <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
@@ -655,6 +715,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer">
