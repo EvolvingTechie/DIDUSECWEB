@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - DIDUSEC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0A2E5C;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        nav a:hover {
+            color: #0070AD;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+        }
+        
+        .dropdown-toggle i {
+            margin-left: 5px;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown.active .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            min-width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            padding: 8px 0;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            display: block;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            padding: 10px 15px;
+            display: block;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f0f5ff;
+            border-left: 3px solid #0070AD;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #0A2E5C 0%, #0070AD 100%);
+            color: #fff;
+            padding: 150px 0 80px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-icon-main {
+            font-size: 60px;
+            color: #00A8E8;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .hero-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        /* Privacy Policy Section */
+        .privacy-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #0A2E5C;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #00A8E8;
+        }
+        
+        .privacy-content {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .privacy-content h2 {
+            font-size: 24px;
+            color: #0A2E5C;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .privacy-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #00A8E8;
+        }
+        
+        .privacy-content p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .privacy-content ul {
+            list-style: none;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .privacy-content ul li {
+            position: relative;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .privacy-content ul li::before {
+            content: '\f058'; /* Font Awesome check-circle */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #00A8E8;
+            position: absolute;
+            left: -20px;
+            top: 2px;
+        }
+        
+        .privacy-content a {
+            color: #00A8E8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .privacy-content a:hover {
+            color: #0A2E5C;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #0A2E5C;
+            color: #fff;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo i {
+            margin-right: 10px;
+            font-size: 28px;
+            color: #00A8E8;
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #00A8E8;
+            transform: translateY(-5px);
+        }
+        
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #00A8E8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 14px;
+            color: #00A8E8;
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: #00A8E8;
+            font-size: 18px;
+            margin-top: 3px;
+        }
+        
+        .footer-contact a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-contact a:hover {
+            color: #fff;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-15px) translateX(15px); }
+            50% { transform: translateY(0) translateX(30px); }
+            75% { transform: translateY(15px) translateX(15px); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            .dropdown.active .dropdown-menu {
+                max-height: 500px;
+            }
+            
+            .hero-section {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .privacy-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: #0A2E5C;"></i>
+                <div class="logo-text">DIDUSEC</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="About US.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="FinOps.html">FinOps</a></li>
+                            <li><a href="IT Automation.html">IT Automation</a></li>
+                            <li><a href="Backup and Restore.html">Backup & Restore</a></li>
+                            <li><a href="Data Fabric.html">Data Fabric</a></li>
+                            <li><a href="Digital Transformations and Modernization.html">Digital Transformation</a></li>
+                            <li><a href="Cloud-Based Omnichannel.html">Cloud-Based Omnichannel</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Why Choose Us.html">Why Choose Us</a></li>
+                    <li><a href="Contact US.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="particles">
+            <div class="particle" style="width: 80px; height: 80px; top: 15%; left: 10%; opacity: 0.1; animation-duration: 28s;"></div>
+            <div class="particle" style="width: 40px; height: 40px; top: 20%; left: 25%; opacity: 0.05; animation-duration: 18s;"></div>
+            <div class="particle" style="width: 100px; height: 100px; top: 60%; left: 5%; opacity: 0.05; animation-duration: 22s;"></div>
+            <div class="particle" style="width: 60px; height: 60px; top: 10%; left: 60%; opacity: 0.06; animation-duration: 15s;"></div>
+            <div class="particle" style="width: 120px; height: 120px; top: 70%; left: 70%; opacity: 0.04; animation-duration: 24s;"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-icon-main">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h1 class="hero-title">Data Privacy Policy</h1>
+                <p class="hero-subtitle">Protecting Your Personal Information</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section class="privacy-section">
+        <div class="container">
+            <h2 class="section-title">Our Commitment to Your Privacy</h2>
+            <div class="privacy-content">
+                <p><strong>Effective Date:</strong> 01 December 2023</p>
+                <p>At Didusec, we are committed to protecting the privacy and security of your personal information. This Data Privacy Policy outlines the types of information we collect, how we use and protect it, and your rights regarding your personal data.</p>
+
+                <h2>Information We Collect</h2>
+                <ul>
+                    <li><strong>Personal Information:</strong> We may collect personal information such as names, contact details, and job titles when you interact with our website or engage with our services.</li>
+                    <li><strong>Usage Information:</strong> We collect information about how you use our website and services, including IP addresses, device information, and browsing behaviour.</li>
+                    <li><strong>Cookies:</strong> We use cookies and similar technologies to enhance your experience on our website and gather information about your preferences and interactions.</li>
+                </ul>
+
+                <h2>How We Use Your Information</h2>
+                <ul>
+                    <li><strong>Service Delivery:</strong> We use your personal information to provide our digital transformation services and to fulfil your requests.</li>
+                    <li><strong>Communication:</strong> We may use your contact information to communicate with you about our services, updates, and relevant information.</li>
+                    <li><strong>Analytics:</strong> We analyse user behaviour and preferences to improve our website, services, and user experience.</li>
+                </ul>
+
+                <h2>Information Sharing</h2>
+                <ul>
+                    <li><strong>Third-Party Service Providers:</strong> We may share your information with trusted third-party service providers who assist us in delivering our services.</li>
+                    <li><strong>Legal Requirements:</strong> We may disclose your information when required by law or in response to legal requests.</li>
+                </ul>
+
+                <h2>Data Security</h2>
+                <ul>
+                    <li><strong>Security Measures:</strong> We employ industry-standard security measures to protect your personal information from unauthorized access, disclosure, or alteration.</li>
+                    <li><strong>Data Retention:</strong> We retain your personal information only as long as necessary for the purposes outlined in this Data Privacy Policy or as required by law.</li>
+                </ul>
+
+                <h2>Your Rights</h2>
+                <ul>
+                    <li><strong>Access and Correction:</strong> You have the right to access and correct your personal information held by us.</li>
+                    <li><strong>Opt-Out:</strong> You can opt-out of receiving marketing communications from us at any time.</li>
+                </ul>
+
+                <h2>Changes to the Privacy Policy</h2>
+                <p>We reserve the right to update this Data Privacy Policy periodically. Please review this page for any changes.</p>
+
+                <h2>Contact Us</h2>
+                <p>If you have questions or concerns regarding this Data Privacy Policy or your personal information, please contact us at <a href="mailto:info@didusec.co.za">info@didusec.co.za</a>.</p>
+                <p>By using our website or services, you consent to the terms outlined in this Data Privacy Policy.</p>
+                <p><strong>Didusec (Pty) Ltd</strong><br>
+                The Pivot, Block E<br>
+                1 Monte Casino Boulevard<br>
+                Fourways<br>
+                Johannesburg<br>
+                <a href="mailto:info@didusec.co.za">info@didusec.co.za</a><br>
+                <a href="tel:+27115933293">+27 11 593 3293</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-cloud-upload-alt"></i> DIDUSEC
+                    </div>
+                    <p class="footer-description">Innovative Cloud Solutions for Digital Transformation</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/didusec-pty-ltd/" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100051923780342" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="Index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="About US.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="Why Choose Us.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                        <li><a href="Contact US.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        <li><a href="Privacy Policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4 class="footer-title">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="FinOps.html"><i class="fas fa-chevron-right"></i> FinOps</a></li>
+                        <li><a href="IT Automation.html"><i class="fas fa-chevron-right"></i> IT Automation</a></li>
+                        <li><a href="Backup and Restore.html"><i class="fas fa-chevron-right"></i> Backup & Restore</a></li>
+                        <li><a href="Data Fabric.html"><i class="fas fa-chevron-right"></i> Data Fabric</a></li>
+                        <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-chevron-right"></i> Digital Transformation</a></li>
+                        <li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-chevron-right"></i> Cloud-Based Omnichannel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="footer-title">Contact Information</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>The Pivot, Block E, 1 Monte Casino Boulevard, Fourways, Johannesburg</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <a href="tel:+27115933293">+27 11 593 3293</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@didusec.co.za">info@didusec.co.za</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri 9am-5pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 DIDUSEC. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('header');
+            const dropdowns = document.querySelectorAll('.dropdown');
+            let lastScrollTop = 0;
+
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+
+            window.addEventListener('scroll', function() {
+                let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScrollTop > lastScrollTop && currentScrollTop > 0) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+            });
+        });
+    </script>
+</body>
+</html>
