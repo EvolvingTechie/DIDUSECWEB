@@ -1,0 +1,1089 @@
+﻿<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script><script>
+$(function(){
+
+var accname = $('.ufstlast').text();
+$('#HomeWelcome_Elem h1 .ufstlPlc').text(accname);
+
+var getUrl;
+var newUrl;
+var urlStor = 0;
+
+$('.overlay').hide();
+$('.overlay2').hide();
+$('.dropBox').hide();
+	
+$('.allLinks').each(function(){
+	someAsset = this.href;
+	/*openFile(someAsset);*/
+	var extension = someAsset.substr( (someAsset.lastIndexOf('.') +1) );
+    switch(extension) {
+        case 'zip':
+        case 'rar':
+		case 'doc':
+		case 'docx':
+		case 'ppt':
+		case 'xls':
+		case 'pdf':
+		case 'ZIP':
+        case 'RAR':
+		case 'DOC':
+		case 'DOCX':
+		case 'PPT':
+		case 'XLX':
+		case 'PDF':
+            $(this).attr('target','_blank');
+        break;
+		case 'mp4':
+		case 'MP4':
+            $(this).addClass('clickIconF');
+		break;
+        default:
+			$(this).addClass('clickIcon');
+    }
+	console.log(extension);
+});
+
+$('.clickIcon').click(function() {
+	getUrl = $(this).attr("href");	
+            //console.log(getUrl);	
+            if(getUrl.indexOf('stwb.co') > -1 || getUrl.indexOf('stwb[dot]co') > -1 || getUrl.indexOf('CampaignPreview.aspx') > -1 || getUrl.indexOf('CampaignPreview[dot]aspx') > -1){
+                $(this).attr('target','_blank');
+                console.log('share or page link');
+            }
+            if(getUrl.indexOf('RegPageID') > -1 || getUrl.indexOf('RegPageManagedID') > -1){
+            
+                if(urlStor > 0){
+                    $('#popForm').find('iframe').attr('src', newUrl);
+                    console.log('new');
+                }
+                else {
+                    $('#popForm').find('iframe').attr('src', getUrl);
+                    console.log('old');
+                }
+            
+                $('.overlay2').fadeIn();
+                $('#popForm').fadeIn();
+                
+                setTimeout(function(){
+                    urlStor = 1;
+                    $('.overlay2').hide();
+                    $('#popForm').hide();
+                    newUrl = document.getElementById("iframe_id").contentWindow.location.href;
+                    $('#popForm').find('iframe').attr('src', newUrl);
+                }, 180000);
+                
+                console.log('form page');
+                return false;
+            }
+            if(getUrl.indexOf('youtube') > -1){
+                var you_part = getUrl.substring(getUrl.lastIndexOf("/") + 1, getUrl.length);	
+                $('#vidDiv').find('iframe').attr('src', ('https://www.youtube.com/embed/'+you_part+'?autoplay=1'));		
+                $('.overlay').fadeIn();
+                $('#vidDiv').fadeIn();
+                console.log('youtube');
+                return false;
+            }
+            if(getUrl.indexOf('vimeo') > -1){
+                $('#vidDiv').find('iframe').attr('src', getUrl);
+                $('.overlay').fadeIn();
+                $('#vidDiv').fadeIn();
+                console.log('vimeo');
+                return false;
+            }
+            if(getUrl.indexOf('kaltura') > -1){
+                    var kal_part = getUrl.split('_id=');
+                        kal_part = kal_part[1];
+                        kal_part = kal_part.split('&');
+                        kal_part = kal_part[0];
+                    var kal_url = 'https://cdnapisec.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/44837961/partner_id/1773841?iframeembed=true&playerId=kplayer&entry_id='+kal_part+'&flashvars[streamerType]=auto';
+                $('#vidDiv').find('iframe').attr('src', kal_url);
+                $('.overlay').fadeIn();
+                $('#vidDiv').fadeIn();
+                console.log('kaltura - '+kal_url);
+                return false;
+            }
+            if(getUrl.indexOf('[dot]mp4') > -1){
+                getUrl = $(this).attr("href");	
+                $('#vidDiv').find('iframe').attr('src', (getUrl));
+                $('.overlay').fadeIn();
+                $('#vidDiv').fadeIn();
+                console.log('sw video');
+                return false;
+            }
+	else {
+		$(this).attr('target','_blank');
+		}
+});
+$('.clickIconF').click(function() {
+	//console.log(getUrl);	
+	getUrl = $(this).attr("href");	
+	$('#vidDiv').find('iframe').attr('src', (getUrl));
+	$('.overlay').fadeIn();
+	$('#vidDiv').fadeIn();
+	return false;
+	console.log('sw video');
+});
+$('.closeBtn').click(function() {
+	$('#vidDiv').find('iframe').attr('src','');
+	$('#vidDiv').fadeOut();
+	$('.overlay').fadeOut();		
+	return false;
+});
+$('.actionPageClose').click(function() {
+	urlStor = 1;
+	newUrl = document.getElementById("iframe_id").contentWindow.location.href;
+	$('#popForm').find('iframe').attr('src',newUrl);
+	$('#popForm').fadeOut();
+	$('.overlay2').fadeOut();		
+	
+	console.log(newUrl);
+	return false;
+});
+$(document).on('click','.targetform',function() {
+	$('html, body').animate({
+		scrollTop: $('#formarea').offset().top
+	}, 1200);
+	
+	$('#formarea input[name=firstname]').focus();
+	return false;
+});
+});
+</script><script>
+function popupWindow(url, title, win, w, h) {
+    const y = win.top.outerHeight / 2 + win.top.screenY - ( h / 2);
+    const x = win.top.outerWidth / 2 + win.top.screenX - ( w / 2);
+    return win.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+y+', left='+x);
+}
+</script>
+<style type="text/css">@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+.outerWraper {
+	max-width:1400px;
+	width:100%;
+	padding:0;
+	margin:0 auto;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:28px;
+	color:#1d1d1d;
+	font-weight:400;
+}
+.outerWraper .contSecTopLft .welcomeArea {
+	padding:0 0 30px;
+}
+.outerWraper .contSecTopLft .welcomeArea p {
+	font-size: 18px;
+	line-height: 28px;
+}
+.outerWraper div, .outerWraper td, .outerWraper p, .outerWraper a, .outerWraper h1, .outerWraper h2, .outerWraper h3, .outerWraper h4, .outerWraper h5, .outerWraper li, .outerWraper form, .outerWraper input, .outerWraper select {
+	padding:0;
+	margin:0;
+}
+.outerWraper img {
+	padding:0;
+	margin:0;
+	border:none;
+	display:block;
+}
+.outerWraper ul {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+.outerWraper a {
+	text-decoration:none;
+	outline:none;
+	font: inherit;
+	color: #0769fe;
+}
+.outerWraper a:hover {color: #0345a9;}
+.outerWraper h2 {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:22px;
+	line-height:28px;
+	color:#0769fe;
+	margin-bottom:8px;
+	font-weight:700;
+}
+.outerWraper p {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:28px;
+	color:#1d1d1d;
+	margin-bottom:24px;
+	font-weight:400;
+}
+.outerWraper .spacer {
+	padding:0;
+	margin:0;
+	line-height:0;
+	font-size:0;
+	clear:both;
+}
+.outerWraper .EditTag {
+	width:30px;
+	height:30px;
+	background-image:none!important;
+}
+.outerWraper .mainWraper {
+	max-width:1280px;
+	width:100%;
+	margin:0 auto;
+}
+.outerWraper .mainWraperCont {
+	max-width:1280px;
+	width:100%;
+	margin:0 auto;
+	display:flex;
+	justify-content: space-between;
+}
+.outerWraper .logoSec {
+	padding:60px 0 30px 0;
+}
+.outerWraper .logoSec img {
+	width:170px;
+	height:auto;
+	display:block;
+}
+.outerWraper .banSec {
+	/* padding:75px 0 92px;
+	margin:0; */
+    /*position: relative;*/
+	min-height:300px;
+}
+.outerWraper .banSec .banImg{
+	position:relative;
+	z-index:50;
+	}
+.outerWraper .banSec .banImg img {
+    margin: auto;
+    /*height: 300px;*/
+    object-fit: cover;
+    max-width: 1400px;
+    width: 100%;
+    object-position: right center;
+}
+.outerWraper .banSec .banImg .mainWraper {
+    position: absolute;
+    top: 50px;
+    left: 60px;
+	min-height:210px;
+    /*margin-top: -230px;
+    margin-bottom: 70px;*/
+	z-index:20;
+}
+.outerWraper .banSec h2 {
+	line-height: 40px;
+	font-family: 'IBM Plex Sans', sans-serif;
+	/*color: #ffffff;*/
+    font-size: 32px;
+	margin-bottom: 10px;
+}
+.outerWraper .banSec p {
+	font-family: 'IBM Plex Sans', sans-serif;
+	/*color:#ffffff;*/
+	font-size:26px;
+	line-height:30px;
+}
+.outerWraper .banSec a {
+	width:auto;
+	display:inline-block;
+	text-decoration:none;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:28px;
+	color:#ffffff;
+	font-weight:600;
+	padding: 15px 45px 15px 20px;
+	box-sizing: border-box;
+	background: url(https://ibmpartnerworld.atworkweb.com/sw/swchannel/images/users/138104/lp/arrow-white-new.png) no-repeat right 5px center #0769fe;
+	background-color:#0769fe;
+	position: absolute;
+	bottom:0;
+}
+/*.outerWraper .banSec a span {
+	display:inline-block;
+	width:13px;
+	height:10px;
+	background:url(/sw/swchannel/images/users/138104/lp/arrow-white.png) no-repeat 0 0;
+	margin:0 0 0 15px;
+}*/
+.outerWraper a:empty {
+	display:none!important;
+}
+.outerWraper .contSec {
+	border-bottom:1px solid #c5c5c5;
+}
+.outerWraper .contSecTop {
+	padding:40px 0 0;
+}
+.outerWraper .contSecTopLft {
+	flex-basis:66%;
+	padding: 0 5% 0 0;
+	box-sizing: border-box;
+	border-right: 1px solid #c5c5c5;
+}
+.outerWraper .contSecTopRght {
+	flex-basis:30%;
+	padding:0 0 3% 0;
+}
+.outerWraper .contSecTopLftIn_new {
+	padding-bottom: 40px;
+	margin-bottom: 40px;
+	width: 100%;
+	/*display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #c5c5c5;
+    flex-direction: row-reverse;*/
+}
+.outerWraper .contSecTopLftIn_new:empty {
+	display:none!important;
+}
+/*.outerWraper .contSecTopLftIn_new:nth-child(3):empty{
+	border-bottom:none!important;
+}*/
+.outerWraper .contSecTopLftIn_new:last-child {
+	border-bottom:none!important;
+}
+.outerWraper .contSecTopLftIn_new .bothPan {
+	display:flex;
+	justify-content: space-between;
+	padding-bottom:0px;
+	margin-bottom:0px;
+	width:100%;
+	flex-direction: row-reverse;
+}
+/*.outerWraper .contSecTopLftIn_new span .bothPan {
+	display:flex;
+	justify-content: space-between;
+	padding-bottom:0px;
+	margin-bottom:0px;
+	width:100%;
+	flex-direction: row-reverse;
+}*/
+.outerWraper .contSecTopLftIn {
+	display:flex;
+	justify-content: space-between;
+	padding-bottom:40px;
+	/*border-bottom:1px solid #c5c5c5;*/
+	margin-bottom:40px;
+	width:100%;
+	flex-direction: row-reverse;
+}
+.outerWraper .contSecTopLftInLft ul {
+	padding:0;
+	margin:0 0 20px 0;
+	list-style-type:none;
+}
+.outerWraper .contSecTopLftInLft ul li {
+	background:url(https://ibmpartnerworld.atworkweb.com/sw/swchannel/images/users/138104/lp/blue-bullet-ibm.png) no-repeat 0 9px;
+	padding:0 0 10px 20px;
+}
+.outerWraper .contSecTopLftIn span {
+	display:flex;
+	justify-content: space-between;
+	width:100%;
+	flex-direction: row-reverse;
+}
+/*.outerWraper .contSecTopLftIn:nth-child(3)span{
+	display:table!important;
+	}
+ .outerWraper .contSecTopLftIn span .contSecSpl{
+	display:flex;
+	justify-content: space-between;
+	width:100%;
+	flex-direction: row-reverse;
+	}*/
+ .outerWraper .contSecTopLftIn span .contSecSpl:last-child {
+	padding-top: 40px!important;
+	border-top: 1px solid #c5c5c5!important;
+	margin-top: 40px;
+}
+.outerWraper .contSecTopLftIn:last-child {
+	border-bottom:none;
+}
+.outerWraper .contSecTopLftInLft {
+	width:65%;
+}
+.outerWraper .contSecTopLftInLft p {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size: 18px;
+	line-height: 28px;
+	color: #1d1d1d;
+	margin-bottom: 24px;
+	font-weight: 400;
+}
+.outerWraper .contSecTopLftInRght {
+	width:30%;
+}
+.outerWraper .contSecTopLftInRght a {
+	display:block;
+	text-decoration:none;
+}
+.outerWraper .contSecTopLftInRght img {
+	padding:6px;
+	border:1px solid #ebebeb;
+	width:100%;
+	box-sizing:border-box;
+}
+.outerWraper a.ctaAnch {
+	display: inline-block;
+	text-decoration: none;
+	color: #0769fe;
+	background: url(https://ibmpartnerworld.atworkweb.com/sw/swchannel/images/users/138104/lp/arrow.png) no-repeat 100% 10px;
+	width: auto;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: 400;
+	padding: 0 22px 0 0;
+}
+.outerWraper a.ctaAnch:hover {
+	color:#0345a9;
+}
+.outerWraper .newSec{
+	padding-bottom:40px!important;
+	margin-bottom:40px!important;
+	border-bottom: 1px solid #C5C5C5!important;
+}
+.outerWraper .formSec {
+	padding:60px 0;
+	border-bottom:1px solid #e2e2e2;
+}
+.outerWraper .footerSec {
+	padding:40px 0 90px;
+}
+.outerWraper .ibmLogo {
+	flex-basis:146px;
+}
+.outerWraper .ibmLogo img {
+	width:146px;
+	height:auto;
+}
+.outerWraper .addressPan {
+	flex-basis:250px;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:14px;
+	line-height:28px;
+	color:#1d1d1d;
+	font-weight:400;
+	text-align:right;
+}
+.outerWraper .footerSecAdd {
+	margin-bottom:30px;
+}
+.outerWraper .footerSecCopy {
+	text-align:center;
+	border-top:1px solid #7f7f7f;
+	border-bottom:1px solid #7f7f7f;
+	padding:15px 0;
+	margin-bottom:30px;
+}
+.outerWraper .footerSecCopy p {
+	margin:0;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:12px;
+	line-height:28px;
+	color:#595959;
+	font-weight:400;
+}
+.outerWraper .footerSecDisclaim p {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:10px;
+	line-height:14px;
+	color:#595959;
+	font-weight:400;
+}
+.outerWraper .footerSecDisclaim p a {
+	color:#0769fe;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:10px;
+	line-height:14px;
+	color:#0769fe;
+	font-weight:400;
+}
+/*--------Light Box--------*/
+.overlay, .overlay2 {
+	background:rgba(0, 0, 0, .8);
+	position:fixed;
+	z-index:9999999;
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+}
+.dropBox {
+	z-index:99999999;
+	width:90%;
+	max-width:700px;
+	position:fixed;
+	top:8%;
+	left:50%;
+	margin:0 auto auto -400px;
+	height:600px;
+	background:#fff;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+.dropBox.videoArea {
+	height:500px;
+	max-width:800px;
+	margin:0 auto auto -400px;
+}
+.dropInner {
+	position:relative;
+	padding:20px;
+	box-sizing:border-box;
+	height:100%;
+}
+.vidWrap {
+	height:100%!important;
+}
+.closeBtn, .closeBtnF, a.closeBtn, a.closeBtnF, .actionPageClose {
+	position:absolute;
+	top:-10px;
+	right:-10px;
+	font-size:20px;
+	line-height:26px;
+	color:#fff;
+	font-weight:600;
+	font-family:Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	display:block;
+	background:#000;
+	border:2px solid #ccc;
+	border-radius:50%;
+	moz-border-radius:50%;
+	text-align:center;
+	height:28px;
+	width:28px;
+}
+.closeBtn:hover, .closeBtnF:hover, a.closeBtn:hover, a.closeBtnF:hover, .actionPageClose:hover {
+	color:#FF0000;
+}
+.scrollContent {
+	overflow:auto!important;
+	height:560px!important;
+}
+.dropBox {
+	display:none;
+}
+/*--------Light Box--------*/
+/*--------Form style-------*/
+.outerWraper .contSecTopRght .normal_bold_text {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:28px;
+	font-weight:400;
+}
+.outerWraper .contSecTopRght .normal_text {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:28px;
+	font-weight:400;
+}
+.outerWraper .contSecTopRght table {
+	width:100%;
+}
+.outerWraper .contSecTopRght .FormTextBox, .outerWraper .contSecTopRght .FormTextBoxFocus {
+	width:100%;
+	padding:0 2%;
+	box-sizing: border-box;
+	height:50px;
+	border:1px solid #96a1ae;
+	margin:0 0 10px 0!important;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:40px;
+	font-weight:400;
+}
+/*.mainWraper .formPan .FormAreaCodeBox, .mainWraper .formPan .FormAreaCodeBoxFocus{
+ width:100px;
+ height:28px;
+ border:1px solid #B5B5B5;
+ margin:0 0 5px 0;
+}*/
+.outerWraper .contSecTopRght .FormPhoneBox, .outerWraper .contSecTopRght .FormPhoneBoxFocus {
+	width:100%;
+	padding:0 2%;
+	box-sizing: border-box;
+	height:50px;
+	border:1px solid #96a1ae;
+	margin:0 0 10px 0!important;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:40px;
+	font-weight:400;
+}
+.outerWraper .contSecTopRght .FormTextAreaBox, .outerWraper .contSecTopRght .FormTextAreaBoxFocus {
+	width:100%;
+	padding:0 2%;
+	box-sizing: border-box;
+	height:50px;
+	border:1px solid #96a1ae;
+	margin:0 0 10px 0!important;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:40px;
+	font-weight:400;
+}
+/*.mainWraper .formPan .FormSelectBox, .mainWraper .formPan .FormSelectBoxFocus{
+ width:300px;
+ height:20px;
+ border:1px solid #B5B5B5;
+ margin:0 0 5px 0;
+}*/
+.outerWraper .contSecTopRght .FormTextBox, .outerWraper .contSecTopRght .FormTextBoxFocus, .outerWraper .contSecTopRght input[type=text].requiredField, .outerWraper .contSecTopRght input[type=email].requiredField, .outerWraper .contSecTopRght input[type=tel].requiredField, .outerWraper .contSecTopRght input.requiredField {
+	width:100%;
+	padding:0 2%;
+	box-sizing: border-box;
+	height:50px;
+	border:1px solid #96a1ae;
+	margin:0 0 10px 0!important;
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size:18px;
+	line-height:40px;
+	font-weight:400;
+}
+
+#formarea td {
+    white-space: normal;
+}
+.privacy{ margin-top: 25px!important; display: block;}
+/*--------Form style-------*/
+@media screen and (max-width : 1024px) {
+.outerWraper {
+ width:100%;
+}
+.outerWraper .mainWraper {
+ width:90%!important;
+}
+.outerWraper .mainWraperCont {
+ width:90%!important;
+}
+.outerWraper a.ctaAnch {
+ background: url(https://ibmpartnerworld.atworkweb.com/sw/swchannel/images/users/138104/lp/arrow.png) no-repeat 100% 9px;
+ width: 190px;
+}
+.outerWraper .contSecTopLftInRght img {
+ width:100%;
+ box-sizing: border-box;
+}
+}
+@media screen and (max-width : 960px) {
+.outerWraper .contSecTopLftIn_new:last-child {
+    border-bottom: 1px solid #C5C5C5 !important;
+}
+
+.outerWraper .mainWraperCont {
+ flex-wrap: wrap;
+}
+.outerWraper .contSecTopLft {
+ flex-basis:100%!important;
+}
+.outerWraper .contSecTopRght {
+ flex-basis:100%!important;
+}
+.outerWraper .contSecTopLft {
+ border:none;
+ padding:0;
+}
+}
+@media screen and (max-width : 900px) {
+.dropBox.videoArea {
+ margin:0 5%;
+ left:0;
+ top:5%;
+}
+}
+@media screen and (max-width : 767px) {
+.outerWraper .mainWraperCont {
+ flex-direction: inherit;
+ flex-wrap: wrap;
+}
+.outerWraper .contSecTopLft {
+ flex-basis: 100%!important;
+}
+.outerWraper .contSecTopRght {
+ flex-basis: 100%!important;
+}
+.outerWraper .contSecTopRght a {
+ margin:0 auto 20px;
+}
+.outerWraper .contSecBotBox {
+ width:100%;
+ margin-bottom:20px;
+}
+.outerWraper .addressPan {
+ flex-basis:100%;
+ text-align:left;
+ margin-bottom:20px;
+}
+.outerWraper .ibmLogo {
+ flex-basis:100%;
+ margin-bottom:20px;
+}
+}
+@media screen and (max-width:660px) {
+.dropBox {
+ width:90%;
+ left:0;
+ margin:0 5% auto;
+ top:5%;
+}
+}
+@media screen and (max-width:600px) {
+.dropBox {
+top:15px;
+}
+.outerWraper .contSecTopLftIn {
+ flex-wrap: wrap;
+ flex-direction: column;
+}
+.outerWraper .contSecTopLftInRght {
+ width:60%;
+ margin-bottom:15px;
+}
+.outerWraper .contSecTopLftInLft {
+ width:100%;
+}
+}
+@media screen and (max-width : 500px) {
+.dropBox {
+ height:300px;
+}
+.scrollContent {
+ height:250px!important;
+}
+.outerWraper .contSecTopLftIn {
+ display:inherit!important;
+}
+}
+@media screen and (max-width : 480px) {
+ .outerWraper .contSecTopLftInRght {
+ width:100%;
+ margin-bottom:15px;
+}
+.outerWraper .contSecTopLftIn span {
+ display:inherit!important;
+}
+.outerWraper .contSecTopLftIn_new span .bothPan {
+ display:table;
+}
+}
+@media screen and (max-width:400px) {
+.dropBox {
+ height:400px;
+}
+}</style>
+<div class="overlay" style="display:none;">&nbsp;</div>
+
+<div class="overlay2" style="display:none;">&nbsp;</div>
+
+<div class="outerWraper">
+	<div class="logoSec">
+		<div class="mainWraper"><img src="https://www.mydmportal.com/sw//swchannel/images/MarketingAssets/149934/Didusec_Logo06_2023_resized.png" border=0></div>
+	</div>
+
+	<div class="banSec">
+		<div class="banImg"><span class="normal_small_text" style="box - sizing: border - box; font - family: museo - sans, sans - serif; "><img src="https://www.mydmportal.com/sw/swchannel/images/TemplateFields/master/parent_45/2362485/application_resource_management_it_automation_1400x300.png" border=0></span> <!--<div id="Banner-Image" style="display: none;"></div>--> <!--<div class="i-wrapper"></div>-->
+			<div class="mainWraper">
+				<h2>IBM Turbonomic Application Resource Management</h2>
+
+				<p>Assure app performance with smarter resource management</p>
+				<a class="allLinks" href="https://www.youtube.com/embed/wbgvAIuTiq4" name="https://www.youtube.com/embed/wbgvAIuTiq4">Watch the overview video</a></div>
+		</div>
+	</div>
+
+	<div class="contSec">
+		<div class="contSecTop">
+			<div class="mainWraperCont">
+				<div class="contSecTopLft">
+					<div class="welcomeArea"><p>Increasingly, complex applications run your business. And they can run your teams ragged trying to stay ahead of dynamic demand. When application performance drops, you may overprovision resource allocations, making costly estimates that often don&rsquo;t always pay off.<br>
+	<br>
+	With IBM<sup>&reg;</sup> Turbonomic<sup>&reg;</sup> Application Resource Management (ARM), you can automate critical actions that proactively deliver the most efficient use of compute, storage and network resources to your apps at every layer of the stack. Continuously, in real time and without human intervention.</p>
+</div>
+
+					<div class="contSecTopLftIn_new" id="divider1"><div class="bothPan">
+	<div class="contSecTopLftInRght" id="Asset1"><a class="allLinks" href="https://stwb.co/papeheh"><img border="0" src="https://login.structuredweb.com/sw/swchannel/images/users/140079/ARMFor-th.jpg"></a></div>
+
+	<div class="contSecTopLftInLft">
+		<p>Forrester Research interviewed IBM customers and developed the Total Economic Impact&trade; Of IBM Turbonomic Application Resource Management. Read the full report here with use cases.</p>
+		<a class="ctaAnch allLinks" href="https://stwb.co/papeheh">Read the Forrester TEI Full Report</a></div>
+</div>
+</div>
+
+					<div class="contSecTopLftIn_new" id="divider2"><div class="bothPan" id="Asset2">
+	<div class="contSecTopLftInRght"><a href="https://www.mydmportal.com/sw/app/ContentManager/PublicDownloadPDF.aspx?TacticID=9brrD-EQ4Kb_YNjzUR1b1A2&amp;csid=utM4-8V2MZhKqJEKGp8t7w2&amp;acctid=79016"><img border="0" src="https://login.structuredweb.com/sw/swchannel/images/users/140079/ProvH-th.jpg"></a></div>
+
+	<div class="contSecTopLftInLft">
+		<p>Healthcare conglomerate Providence deployed IBM Turbonomic app resource management (ARM) to help prove that most of their applications could be downsized&mdash;and that automating those resize actions was safe.</p>
+		<a class="ctaAnch" href="https://www.mydmportal.com/sw/app/ContentManager/PublicDownloadPDF.aspx?TacticID=9brrD-EQ4Kb_YNjzUR1b1A2&amp;csid=utM4-8V2MZhKqJEKGp8t7w2&amp;acctid=79016">Read about the Providence Health case study</a></div>
+</div>
+</div>
+
+					<div class="contSecTopLftIn_new" id="divider3"><div class="bothPan" id="Asset3">
+	<div class="contSecTopLftInRght"><a class="allLinks" href="https://cdnapisec.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/44837961/partner_id/1773841?iframeembed=true&amp;playerId=kplayer&amp;entry_id=1_mran8l93&amp;flashvars[streamerType]=auto"><img border="0" src="https://login.structuredweb.com/sw/swchannel/images/users/140079/PROS-vid-th.jpg"></a></div>
+
+	<div class="contSecTopLftInLft">
+		<p>Watch this 4 minute video featuring Senior Program Manager of Cloud Operations at PROS and Global CTO of Turbonomic sharing how they worked together to reduce PROS&rsquo; cloud costs by $1M and improve utilization in 2021.</p>
+		<a class="ctaAnch allLinks" href="https://cdnapisec.kaltura.com/p/1773841/sp/177384100/embedIframeJs/uiconf_id/44837961/partner_id/1773841?iframeembed=true&amp;playerId=kplayer&amp;entry_id=1_mran8l93&amp;flashvars[streamerType]=auto">On the journey to cloud elasticity, IBM &amp; PROS are better together</a></div>
+</div>
+</div>
+
+					<div class="contSecTopLftIn_new" id="divider4"><!-- <div class="bothPan" id="Asset4">
+	<div class="contSecTopLftInRght"><a class="targetform" href="https://www.mydmportal.com/sw/app/ContentManager/PublicDownloadPDF.aspx?TacticID=leAEsZTz8nxip2Y9ykNyBw2&amp;csid=utM4-8V2MZhKqJEKGp8t7w2&amp;acctid=79016"><img border="0" src="/sw/swchannel/images/users/138104/pmks/Thumb-Total-Economic.png"></a></div>
+
+	<div class="contSecTopLftInLft">
+		<p>Get access to key insights to better understand the economic impact Planning Analytics with Watson can have on your business over a three-year period, according to this Forrester commissioned study.</p>
+		<a class="ctaAnch targetform" href="https://www.mydmportal.com/sw/app/ContentManager/PublicDownloadPDF.aspx?TacticID=leAEsZTz8nxip2Y9ykNyBw2&amp;csid=utM4-8V2MZhKqJEKGp8t7w2&amp;acctid=79016">Download the Total Economic Impact report from Forrester</a></div>
+</div>
+--></div>
+				</div>
+
+				<div class="contSecTopRght" id="formarea">
+					<h2>Sign up for a no-charge Sustainability Assessment</h2>
+
+					<p> Fill out this form and we will be in touch</p>
+					
+        <form
+            name="myForm"
+            enctype="multipart/form-data"
+            action="http://www.ibmpartnerworld.atworkweb.com/sw/swchannel/Registration/internet/RegistrationSubmit.cfm?SWSESSIONID=C697A34D01BA7761729CE4B5D3E8DE5D"
+            method="post">
+        
+    <table border="0" cellpadding="3">
+
+        
+
+        
+        <input type="Hidden" name="ProductCCID" value="">
+        <input type="Hidden" name="ProductMasterID" value="">
+        <input type="Hidden" name="CustomPageID" value="">
+        <input type="Hidden" name="ReferDisplayName" value="">
+
+        
+                    <tr valign="TOP">
+                        <td nowrap>
+                            <span class="normal_bold_text">
+                            <span class="normal_error_text">*</span>First Name
+                            </span>
+                        
+                            </td>
+                            <td>
+                        
+                            <span class="normal_text">
+                            
+                                <input
+                                    type="Text"
+                                    size="30"
+                                    class="FormTextBox"
+                                    onfocus="this.className='FormTextBoxFocus';"
+                                    onblur="this.className='FormTextBox';"
+                                    name="firstname"
+                                    value="">
+                            
+                            </span>
+                        </td>
+                    </tr>
+                
+                    <tr valign="TOP">
+                        <td nowrap>
+                            <span class="normal_bold_text">
+                            <span class="normal_error_text">*</span>Last Name
+                            </span>
+                        
+                            </td>
+                            <td>
+                        
+                            <span class="normal_text">
+                            
+                                <input
+                                    type="Text"
+                                    size="30"
+                                    class="FormTextBox"
+                                    onfocus="this.className='FormTextBoxFocus';"
+                                    onblur="this.className='FormTextBox';"
+                                    name="lastname"
+                                    value="">
+                            
+                            </span>
+                        </td>
+                    </tr>
+                
+                    <tr valign="TOP">
+                        <td nowrap>
+                            <span class="normal_bold_text">
+                            <span class="normal_error_text">*</span>Email Address
+                            </span>
+                        
+                            </td>
+                            <td>
+                        
+                            <span class="normal_text">
+                            
+                                <input
+                                    type="Email"
+                                    size="30"
+                                    class="FormTextBox"
+                                    onfocus="this.className='FormTextBoxFocus';"
+                                    onblur="this.className='FormTextBox';"
+                                    name="email"
+                                    value="">
+                            
+                            </span>
+                        </td>
+                    </tr>
+                
+                    <tr valign="TOP">
+                        <td nowrap>
+                            <span class="normal_bold_text">
+                            <span class="normal_error_text">*</span>Phone Number
+                            </span>
+                        
+                            </td>
+                            <td>
+                        
+                            <span class="normal_text">
+                            
+                                                <input
+                                                    size="30"
+                                                    name="phone"
+                                                    value=""
+                                                    class="FormPhoneBox"
+                                                    onfocus="this.className='FormPhoneBoxFocus';"
+                                                    onblur="this.className='FormPhoneBox';"
+                                                    maxlength="30">
+                                            
+                            </span>
+                        </td>
+                    </tr>
+                
+                    <tr valign="TOP">
+                        <td nowrap>
+                            <span class="normal_bold_text">
+                            <span class="normal_error_text">*</span>Company
+                            </span>
+                        
+                            </td>
+                            <td>
+                        
+                            <span class="normal_text">
+                            
+                                <input
+                                    type="Text"
+                                    size="30"
+                                    class="FormTextBox"
+                                    onfocus="this.className='FormTextBoxFocus';"
+                                    onblur="this.className='FormTextBox';"
+                                    name="companyname"
+                                    value="">
+                            
+                            </span>
+                        </td>
+                    </tr>
+                
+        <tr valign="top">
+            <td colspan="2">
+                <table cellpadding="0" cellspacing="0" width="100%" border="0" class="list_row_bg1"><tr valign="top"><td><img src="https://www.mydmportal.com/sw/themes/5/images/blank.gif" width="10" height="1" hspace="0" vspace="0"></td></tr></table>
+            </td>
+        </tr>
+        <tr valign="top">
+    	
+        	<td colspan="2">
+        
+                <span id="SubmitButtonDiv">
+                <input name="btn_submit" class="inactiveLink" onclick="return false;"
+                    type="Image" alt="Submit"
+                    
+                        src="https://www.mydmportal.com/sw/swchannel/images/users/138104&#x2f;btn-submit54.jpg"
+                    
+                    >
+                </span><br>
+        
+                    <table><tr><td>
+                    <span class="normal_small_text">
+                    <span class="normal_error_text">*</span>Required Fields
+                    </span>
+                    </td></tr></table>
+                
+            </td>
+            
+        </tr>
+        
+    </table>
+    </form>
+    
+
+					<div class="privacy"><a href="https://didusec.co.za/data-privacy-policy/" target="_blank">Click here</a> to view the Didusec (Pty) Ltd privacy policy.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footerSec">
+		<div class="footerSecAdd">
+			<div class="mainWraperCont">
+				<div class="ibmLogo"><img src="https://www.mydmportal.com/sw//swchannel/images/MarketingAssets/149934/IBM_Partner_Plus_silver_partner_mark_pos_black_CMYK.jpg" border=0></div>
+
+				<div class="addressPan">Didusec (Pty) Ltd<br>
+					Wembley 1st Floor, The Campus
+57 Sloane Street
+Bryanston
+<br>
+					marketing@didusec.co.za<br>
+					+27115933293<br>
+					https://didusec.co.za</div>
+			</div>
+		</div>
+
+		<div class="footerSecCopy">
+			<p>Copyright © 2023 - All rights reserved</p>
+		</div>
+
+		<div class="footerSecDisclaim">
+			<div class="mainWraper">
+				<p>IBM, the IBM logo, ibm.com, and the IBM Business Partner Emblem are trademarks or registered trademarks of International Business Machines Corporation in the United States, other countries, or both. A current list of IBM trademarks is available on the Web at &quot;Copyright and trademark information&quot; at <a href="www.ibm.com/legal/copytrade.html" target="_blank">www.ibm.com/legal/copytrade.html</a>. Other company, product and service names may be trademarks or service marks of others. The IBM product and/or services described herein are provided by an IBM Business Partner who is an independent reseller/dealer. The fulfillment of any conditions or offers described herein are the sole responsibility of the IBM Business Partner. IBM is not responsible for the actions or performance of IBM Business Partners. IBM Business Partner special offers, products and prices may be withdrawn or modified at any time without prior notice.</p>
+			</div>
+		</div>
+	</div>
+</div>
+<style type="text/css">.outerWraper .banSec h2 {
+    color: #000000;
+}
+.outerWraper .banSec p {
+    color: #000000;
+}</style>
+<!--Section Dividers CSS-->
+<style type="text/css">.outerWraper .contSecTopLftIn_new{
+	border-bottom: 1px solid #C5C5C5!important;
+	}</style>
+<style type="text/css">}.outerWraper .contSecTopLftIn_new 
+{border-bottom: 1px solid #C5C5C5!important;}div#divider1 
+{/*border-bottom: none!important;padding-bottom: 0px;*/}div#divider2 {/*border-bottom: none!important;padding-bottom: 0px;*/}div#divider3 {border-bottom: none!important;padding-bottom: 0px;}
+div#divider4 {border-bottom: none!important;padding-bottom: 0px;}</style>
+
+
+<div class="dropBox videoArea" id="vidDiv">
+	<div class="dropInner"><a class="closeBtn" href="#">x</a>
+
+		<div class="vidWrap"><iframe allowfullscreen="" frameborder="0" height="100%" id="youVid" src="" width="100%"></iframe></div>
+	</div>
+</div>
+
+<div class="dropBox pageModal" id="popForm">
+	<div class="dropInner"><a class="actionPageClose" href="#">x</a>
+
+		<div class="scrollContent" style="overflow: visible; height: auto;"><iframe allowfullscreen="" frameborder="0" height="100%" id="iframe_id" src="" width="100%"></iframe></div>
+	</div>
+</div>
+<style type="text/css">input.FormTextBoxFocus, input.FormTextAreaBoxFocus, input.FormSelectBoxFocus,  input.FormPhoneBoxFocus,input.FormAreaCodeBoxFocus {
+    background-color: #ffcccb;
+}</style>
+<script>
+    $(window).on('load', function() {
+    // $( document ).ready(function() {
+        var BannerImage = $('#Banner-Image').find('img').attr('src');
+        $('.outerWraper .banSec .banImg').css('background-image', 'url('+ BannerImage +')');
+    });
+</script>
