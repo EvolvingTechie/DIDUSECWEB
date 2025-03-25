@@ -498,10 +498,11 @@
     color: #fff; /* Keep text white */
 }
         
-        .btn-primary:hover {
-            background-color: transparent;
-            border-color: #fff;
-        }
+       .btn-primary:hover {
+    background-color: #0091c7; /* Slightly darker blue instead of transparent */
+    border-color: #0091c7; /* Same color as background */
+    color: #fff; /* Keep text white */
+}
         
         .btn i {
             margin-right: 8px;
@@ -729,20 +730,45 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
-                    <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: #0A2E5C;"></i>
-                    <div class="logo-text">DIDUSEC</div>
-                </a>
-            </div>
+   <!-- Header -->
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: #0A2E5C;"></i>
+                <div class="logo-text">DIDUSEC</div>
+            </a>
+        </div>
         
-        
+        <div class="main-nav">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul class="main-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="About US.html" class="nav-link">About Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="javascript:void(0)" class="nav-link dropdown-toggle" tabindex="0">
+                            Services <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="FinOps.html"><i class="fas fa-chart-pie"></i> FinOps</a></li>
+                            <li><a href="IT Automation.html"><i class="fas fa-robot"></i> IT Automation</a></li>
+                            <li><a href="Backup and Restore.html"><i class="fas fa-database"></i> Backup & Restore</a></li>
+                            <li><a href="Data Fabric.html"><i class="fas fa-network-wired"></i> Data Fabric</a></li>
+                            <li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-database"></i> Cloud-Based Omnichannel</a></li>
+                            <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-rocket"></i> Digital Transformation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="Why Choose Us.html" class="nav-link">Why Choose Us</a></li>
+                    <li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </header>
-
     <!-- Page Header -->
     <section class="page-header">
         <!-- Animated Particles -->
@@ -1220,6 +1246,7 @@
     </footer>
 
     <!-- JavaScript -->
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
