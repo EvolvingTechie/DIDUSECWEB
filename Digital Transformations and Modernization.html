@@ -62,7 +62,7 @@
         }
         
         /* Navigation */
-       .main-nav {
+        .main-nav {
             position: relative;
         }
         
@@ -133,7 +133,8 @@
             padding: 8px 0;
         }
         
-        .dropdown:hover .dropdown-menu {
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -156,7 +157,6 @@
             background-color: #f0f5ff;
             border-left: 3px solid #0070AD;
         }
-
         
         /* Page Header */
         .page-header {
@@ -165,6 +165,7 @@
             padding: 150px 0 80px;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
         
         .particles {
@@ -186,6 +187,7 @@
             position: relative;
             z-index: 10;
             max-width: 800px;
+            margin: 0 auto;
         }
         
         .header-title {
@@ -353,65 +355,16 @@
         }
         
         .btn-primary:hover {
-            background-color: #0091c7; /* Slightly darker blue instead of transparent */
-            border-color: #0091c7; /* Same color as background */
-            color: #fff; /*
+            background-color: #0091c7;
+            border-color: #0091c7;
+            color: #fff;
+        }
         
         .btn i {
             margin-right: 8px;
         }
-
-          /* Amazon Connect Section */
-        .amazon-connect-section {
-            background: linear-gradient(135deg, #0A2E5C 0%, #0070AD 100%);
-            padding: 80px 0;
-            color: #fff;
-            text-align: center;
-        }
         
-        .amazon-connect-section .section-title {
-            color: #fff;
-        }
-        
-        .amazon-connect-section .section-title::after {
-            background-color: #00A8E8;
-        }
-        
-        .connect-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .connect-content p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .learn-more-button {
-            display: inline-flex;
-            align-items: center;
-            background-color: #00A8E8;
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .learn-more-button i {
-            margin-left: 10px;
-        }
-        
-       .learn-more-button:hover {
-            background-color: #0091c7; /* Slightly darker blue instead of transparent */
-            border-color: #0091c7; /* Same color as background */
-            color: #fff; /* Keep text white */
-        }
         /* Footer */
-        
         .footer {
             background-color: #0A2E5C;
             color: #fff;
@@ -443,6 +396,7 @@
         .footer-description {
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 20px;
+            font-size: 16px;
         }
         
         .social-links {
@@ -473,6 +427,7 @@
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
+            color: #fff;
         }
         
         .footer-title::after {
@@ -487,6 +442,7 @@
         
         .footer-links {
             list-style: none;
+            padding: 0;
         }
         
         .footer-links li {
@@ -499,6 +455,7 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            font-size: 16px;
         }
         
         .footer-links a:hover {
@@ -516,6 +473,7 @@
             margin-bottom: 15px;
             display: flex;
             align-items: flex-start;
+            font-size: 16px;
         }
         
         .footer-contact i {
@@ -576,6 +534,11 @@
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
+            
+            .service-image {
+                max-width: 80%;
+                margin: 0 auto;
+            }
         }
         
         @media (max-width: 768px) {
@@ -584,14 +547,29 @@
                 padding: 15px 0;
             }
             
-            nav ul {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
+            .nav-toggle {
+                display: block;
             }
             
-            nav li {
-                margin: 5px 10px;
+            nav ul.main-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.main-menu.active {
+                display: flex;
+            }
+            
+            nav li.nav-item {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
             }
             
             .dropdown-menu {
@@ -621,11 +599,34 @@
             .header-description {
                 font-size: 18px;
             }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+            
+            .footer-contact li {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .footer-contact i {
+                margin-right: 10px;
+                margin-left: 0;
+            }
         }
     </style>
 </head>
 <body>
-   <!-- Header -->
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -636,31 +637,31 @@
             </div>
             
             <div class="main-nav">
-<button class="nav-toggle" aria-label="Toggle navigation">
-<i class="fas fa-bars"></i>
-</button>
-<nav>
-<ul class="main-menu">
-<li class="nav-item"><a href="Index.html" class="nav-link">Home</a></li>
-<li class="nav-item"><a href="About US.html" class="nav-link">About Us</a></li>
-<li class="nav-item dropdown">
-<a href="javascript:void(0)" class="nav-link dropdown-toggle">
-                    Services <i class="fas fa-chevron-down"></i>
-</a>
-<ul class="dropdown-menu">
-<li><a href="FinOps.html"><i class="fas fa-chart-pie"></i> FinOps</a></li>
-<li><a href="IT Automation.html"><i class="fas fa-robot"></i> IT Automation</a></li>
-<li><a href="Backup and Restore.html"><i class="fas fa-database"></i> Backup & Restore</a></li>
-<li><a href="Data Fabric.html"><i class="fas fa-network-wired"></i> Data Fabric</a></li>
-<li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-database"></i> Cloud-Based Omnichannel</a></li>
-<li><a href="Digital Transformations and Modernization.html"><i class="fas fa-rocket"></i> Digital Transformation</a></li>
-</ul>
-</li>
-<li class="nav-item"><a href="Why Choose Us.html" class="nav-link">Why Choose Us</a></li>
-<li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
-</ul>
-</nav>
-</div>
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul class="main-menu">
+                        <li class="nav-item"><a href="Index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="About US.html" class="nav-link">About Us</a></li>
+                        <li class="nav-item dropdown">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle" tabindex="0">
+                                Services <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="FinOps.html"><i class="fas fa-chart-pie"></i> FinOps</a></li>
+                                <li><a href="IT Automation.html"><i class="fas fa-robot"></i> IT Automation</a></li>
+                                <li><a href="Backup and Restore.html"><i class="fas fa-database"></i> Backup & Restore</a></li>
+                                <li><a href="Data Fabric.html"><i class="fas fa-network-wired"></i> Data Fabric</a></li>
+                                <li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-database"></i> Cloud-Based Omnichannel</a></li>
+                                <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-rocket"></i> Digital Transformation</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="Why Choose Us.html" class="nav-link">Why Choose Us</a></li>
+                        <li class="nav-item"><a href="contact-us.html" class="nav-link">Contact Us</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -744,7 +745,6 @@
         </div>
     </section>
 
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -755,8 +755,8 @@
                     </div>
                     <p class="footer-description">Innovative cloud solutions for digital transformation. We help businesses optimize their cloud spending, streamline operations, and accelerate growth.</p>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/company/didusec-pty-ltd/" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=100051923780342" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/company/didusec-pty-ltd/" class="social-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100051923780342" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
                 
@@ -768,7 +768,7 @@
                         <li><a href="Services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
                         <li><a href="Why Choose Us.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
                         <li><a href="contact-us.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-                          <li><a href="Privacy Policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy </a></li>
+                        <li><a href="Privacy Policy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
                     </ul>
                 </div>
                 
@@ -780,7 +780,7 @@
                         <li><a href="Backup and Restore.html"><i class="fas fa-chevron-right"></i> Backup & Restore</a></li>
                         <li><a href="Data Fabric.html"><i class="fas fa-chevron-right"></i> Data Fabric</a></li>
                         <li><a href="Cloud-Based Omnichannel.html"><i class="fas fa-database"></i> Cloud-Based Omnichannel</a></li>
-                        <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-chevron-right"></i> Digital Transformation</a></li>
+                        <li><a href="Digital Transformations and Modernization.html"><i class="fas fa-rocket"></i> Digital Transformation</a></li>
                     </ul>
                 </div>
                 
@@ -821,8 +821,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const header = document.querySelector('header');
+            const navToggle = document.querySelector('.nav-toggle');
+            const mainMenu = document.querySelector('.main-menu');
             const dropdowns = document.querySelectorAll('.dropdown');
             let lastScrollTop = 0;
+
+            // Mobile navigation toggle
+            navToggle.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                mainMenu.classList.toggle('active');
+            });
 
             // Dropdown menu toggle for mobile
             dropdowns.forEach(dropdown => {
